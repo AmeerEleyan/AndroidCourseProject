@@ -16,6 +16,11 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
                 }
         );
+        findViewById(R.id.forget_password_text).setOnClickListener(
+                v->{
+                    startActivity(new Intent(LoginActivity.this,ForgetPassword.class));
+                }
+        );
     }
 
 }
