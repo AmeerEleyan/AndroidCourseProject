@@ -9,6 +9,7 @@ import android.os.Bundle;
  * @author: Amir Eleyan
  * ID: 1191076
  * Date: 30/4/2022      1:30 AM
+ * Android Course
  */
 public class LoginActivity extends AppCompatActivity {
 
