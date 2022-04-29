@@ -5,6 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * @Author : Abdallah Fialah
+ * ID : 1162193
+ * Date : 30-4-2022
+ */
+
+
 public class SignUpActivity extends AppCompatActivity {
 
     @Override
