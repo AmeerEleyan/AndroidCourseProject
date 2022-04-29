@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AndroidProject</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="forget_your_password">Forget your password?</string>
+    <string name="login">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="Already_have_an_account">Already have an account?</string>
+    <string name="Confirm_password">confirm password</string>
+    <string name="user_name">user name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="hello">Hello</string>
+</resources>
