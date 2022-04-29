@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * @author: Amir Eleyan
+ * ID: 1191076
+ * Date: 30/4/2022      1:30 AM
+ */
 public class LoginActivity extends AppCompatActivity {
 
     @Override
