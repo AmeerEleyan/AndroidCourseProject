@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         findViewById(R.id.sign_up_text).setOnClickListener(
                 v->{
-                    startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 }
         );
         findViewById(R.id.forget_password_text).setOnClickListener(
