@@ -10,6 +10,9 @@ import android.os.Bundle;
  * ID : 1162193
  * Date : 30-4-2022
  * Android Development Course
+ * We love you Benzema
+ * not work station
+ *
  */
 
 
@@ -22,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.log_in_txt).setOnClickListener(
                 v->{
                     startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+                    //not work station
                 }
         );
     }
