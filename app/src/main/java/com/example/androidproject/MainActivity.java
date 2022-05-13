@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+    //test
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewCategoryList;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // recyclerViewCategoryList();
+       recyclerViewCategoryList();
     }
 
     private void recyclerViewCategoryList() {
