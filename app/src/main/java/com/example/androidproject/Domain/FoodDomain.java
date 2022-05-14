@@ -2,21 +2,21 @@ package com.example.androidproject.Domain;
 
 public class FoodDomain {
     private String title;
-    private String pid;
+    private String pic;
     private String description;
     private Double fee;
     private int numberInCart;
 
-    public FoodDomain(String title, String pid, String description, Double fee) {
+    public FoodDomain(String title, String pic, String description, Double fee) {
         this.title = title;
-        this.pid = pid;
+        this.pic = pic;
         this.description = description;
         this.fee = fee;
     }
 
-    public FoodDomain(String title, String pid, String description, Double fee, int numberInCart) {
+    public FoodDomain(String title, String pic, String description, Double fee, int numberInCart) {
         this.title = title;
-        this.pid = pid;
+        this.pic = pic;
         this.description = description;
         this.fee = fee;
         this.numberInCart = numberInCart;
@@ -30,12 +30,12 @@ public class FoodDomain {
         this.title = title;
     }
 
-    public String getPid() {
-        return pid;
+    public String getPic() {
+        return pic;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getDescription() {

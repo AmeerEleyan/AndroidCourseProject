@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.androidproject.R;
 
@@ -27,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.forget_password_text).setOnClickListener(
                 v->{
                     startActivity(new Intent(LoginActivity.this,ForgetPassword.class));
+                }
+        );
+        findViewById(R.id.login_btn).setOnClickListener(
+                v->{
+                    startActivity(new Intent(LoginActivity.this,CategoryItemsActivity.class));
+
                 }
         );
 
