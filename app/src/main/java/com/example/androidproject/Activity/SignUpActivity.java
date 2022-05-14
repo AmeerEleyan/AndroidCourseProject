@@ -1,9 +1,11 @@
-package com.example.androidproject;
+package com.example.androidproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.androidproject.R;
 
 /**
  * @Author : Abdallah Fialah

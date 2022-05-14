@@ -1,6 +1,5 @@
-package com.example.androidproject;
+package com.example.androidproject.Adaptor;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +12,24 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.Domain.CategoryDomain;
+import com.example.androidproject.Domain.FoodDomain;
+import com.example.androidproject.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder> {
+public class PoplurarAdaptor extends RecyclerView.Adapter<PoplurarAdaptor.ViewHolder> {
 
 
-    ArrayList<Category> categories;
+    ArrayList<FoodDomain> categoryFood;
 
-    public CategoryAdaptor(ArrayList<Category> categories) {
-        this.categories = categories;
+    public PoplurarAdaptor(ArrayList<FoodDomain> categories) {
+        this.categoryFood = categories;
     }
 
     @NonNull
     @Override
-    public CategoryAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PoplurarAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
 
         return new ViewHolder(inflate);
@@ -35,8 +37,8 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdaptor.ViewHolder holder, int position) {
-        holder.categoryName.setText(categories.get(position).getTitle());
+    public void onBindViewHolder(@NonNull PoplurarAdaptor.ViewHolder holder, int position) {
+        holder.categoryName.setText(categoryFood.get(position).getTitle());
         String picUrl = " ";
         switch (position) {
 
@@ -80,7 +82,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return categoryFood.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,11 +1,11 @@
-package com.example.androidproject;
+package com.example.androidproject.Domain;
 
-public class Category {
+public class CategoryDomain {
 
     private  String title;
     private  String pic;
 
-    public Category(String title, String pic) {
+    public CategoryDomain(String title, String pic) {
         this.title = title;
         this.pic = pic;
     }

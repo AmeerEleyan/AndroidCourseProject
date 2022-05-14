@@ -1,4 +1,4 @@
-package com.example.androidproject;
+package com.example.androidproject.Activity;
 /**
  * @Author :Mohammad AbuBader
  * ID: 1190478
@@ -10,6 +10,8 @@ package com.example.androidproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.androidproject.R;
 
 public class ForgetPassword extends AppCompatActivity {
 
