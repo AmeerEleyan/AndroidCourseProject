@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new PoplurarAdaptor(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
 
+        //test push
 
     }
 
