@@ -4,7 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background1.xml" value="0.1" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background2.xml" value="0.149" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background3.xml" value="0.149" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background4.xml" value="0.149" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background5.xml" value="0.149" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/orange_button.xml" value="0.149" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/activity_login.xml" value="0.22056159420289856" />
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.2128623188405797" />
+        <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/activity_show_detail.xml" value="0.536" />
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/activity_sign_up.xml" value="0.2128623188405797" />
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/categories.xml" value="0.21603260869565216" />
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/layout/viewholder_category.xml" value="0.21603260869565216" />
@@ -18,17 +25,9 @@
         <entry key="..\:/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidCourseProject/app/src/main/res/layout/activity_sign_up.xml" value="0.16983695652173914" />
         <entry key="..\:/AndroidCourseProject/app/src/main/res/layout/viewholder_category.xml" value="0.25" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/drawable/background_btn.xml" value="0.1" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/drawable/background_edittext.xml" value="0.1" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/drawable/cart_background.xml" value="0.1" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/drawable/category_background1.xml" value="0.2095" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/activity_category_items.xml" value="0.18206521739130435" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/activity_login.xml" value="0.536" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.1765625" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/viewholder_category.xml" value="0.15729166666666666" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/layout/viewholder_popular.xml" value="0.536" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/mipmap-anydpi-v26/pizza.xml" value="0.1" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidProject/AndroidCourseProject/app/src/main/res/mipmap-anydpi-v26/pizza_round.xml" value="0.1" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/Project/app/src/main/res/drawable/background_btn.xml" value="0.258" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/Project/app/src/main/res/drawable/background_edittext.xml" value="0.258" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.258" />

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
+            android:name=".Activity.showDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.CategoryItemsActivity"
             android:exported="false" />
         <activity
