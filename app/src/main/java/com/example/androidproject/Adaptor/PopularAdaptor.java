@@ -1,5 +1,6 @@
 package com.example.androidproject.Adaptor;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.Activity.showDetailActivity;
 import com.example.androidproject.Domain.FoodDomain;
 import com.example.androidproject.R;
 
@@ -42,6 +44,15 @@ public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHold
         int drawableResourceID = holder.itemView.getContext().getResources().getIdentifier
                 (popularFood.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
         Glide.with(holder.itemView.getContext()).load(drawableResourceID).into(holder.pic);
+
+
+        holder.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
+            }
+        });
 
     }
 

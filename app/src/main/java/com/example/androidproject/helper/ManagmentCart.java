@@ -1,6 +1,7 @@
 package com.example.androidproject.helper;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.androidproject.Domain.FoodDomain;
 
@@ -14,7 +15,7 @@ public class ManagmentCart {
         this.tinyDB = new TinyDB(context);
 
     }
-    private void insertFood (FoodDomain item){
+    public void insertFood (FoodDomain item){
         ArrayList<FoodDomain> listFood = getListCart();
         boolean exitAlready = false;
         int n = 0 ;
@@ -31,15 +32,13 @@ public class ManagmentCart {
         }else {
             listFood.add(item);
         }
-
-
-
-
+        tinyDB.putListObject("CardList",listFood);
+        Toast.makeText(context, "Add To Your Cart", Toast.LENGTH_SHORT).show();
     }
 
     private ArrayList<FoodDomain> getListCart() {
 
-        return null;
+        return tinyDB.getListObject("CartList");
 
     }
 

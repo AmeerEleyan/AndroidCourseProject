@@ -35,7 +35,8 @@
                 android:text="$"
                 android:textAlignment="center"
                 android:textColor="#ff5e00"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/picFood"
