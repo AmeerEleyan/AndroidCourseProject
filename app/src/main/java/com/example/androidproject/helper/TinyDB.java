@@ -24,8 +24,8 @@ import java.util.Map;
 
 public class TinyDB {
 
-    private SharedPreferences preferences;
-    private String DEFAULT_APP_IMAGEDATA_DIRECTORY;
+    private final SharedPreferences preferences;
+    private String DEFAULT_APP_IMAGE_DATA_DIRECTORY;
     private String lastImagePath = "";
 
     public TinyDB(Context appContext) {
@@ -72,7 +72,7 @@ public class TinyDB {
         if (theFolder == null || theImageName == null || theBitmap == null)
             return null;
 
-        this.DEFAULT_APP_IMAGEDATA_DIRECTORY = theFolder;
+        this.DEFAULT_APP_IMAGE_DATA_DIRECTORY = theFolder;
         String mFullPath = setupFullPath(theImageName);
 
         if (!mFullPath.equals("")) {
@@ -100,7 +100,7 @@ public class TinyDB {
      * @return the full path of the image. If it failed to create directory, return empty string
      */
     private String setupFullPath(String imageName) {
-        File mFolder = new File(Environment.getExternalStorageDirectory(), DEFAULT_APP_IMAGEDATA_DIRECTORY);
+        File mFolder = new File(Environment.getExternalStorageDirectory(), DEFAULT_APP_IMAGE_DATA_DIRECTORY);
 
         if (isExternalStorageReadable() && isExternalStorageWritable() && !mFolder.exists()) {
             if (!mFolder.mkdirs()) {

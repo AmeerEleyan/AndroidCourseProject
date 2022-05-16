@@ -15,4 +15,10 @@
     <string name="hello">Hello</string>
     <string name="confirm_New_Password">Confirm new password</string>
     <string name="cart">Cart</string>
+    <string name="title">title</string>
+    <string name="add_to_chart">Add To Chart</string>
+    <string name="description">Description</string>
+    <string name="_1">1</string>
+    <string name="todo">TODO</string>
+    <string name="dollar">$</string>
 </resources>

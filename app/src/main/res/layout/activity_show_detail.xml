@@ -17,11 +17,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/titletxt"
+                android:id="@+id/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="68dp"
-                android:text="title"
+                android:text="@string/title"
                 android:textAlignment="center"
                 android:textColor="#373554"
                 android:textSize="24sp"
@@ -32,9 +32,9 @@
                 android:id="@+id/priceTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="$"
+                android:text="@string/dollar"
                 android:textAlignment="center"
-                android:textColor="#ff5e00"
+                android:textColor="#FF5722"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -42,7 +42,8 @@
                 android:id="@+id/picFood"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/pizza" />
+                app:srcCompat="@drawable/pizza"
+                android:contentDescription="@string/todo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,7 +55,9 @@
                     android:id="@+id/plusbtn"
                     android:layout_width="34dp"
                     android:layout_height="27dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/add"
+                    tools:ignore="ImageContrastCheck"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/numberOrderTxt"
@@ -62,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="1"
+                    android:text="@string/_1"
                     android:textAlignment="center"
                     android:textColor="#373554"
                     android:textSize="18sp"
@@ -73,7 +76,9 @@
                     android:id="@+id/minusbtn"
                     android:layout_width="28dp"
                     android:layout_height="23dp"
-                    app:srcCompat="@drawable/minus" />
+                    app:srcCompat="@drawable/minus"
+                    tools:ignore="ImageContrastCheck"
+                    android:contentDescription="TODO" />
             </LinearLayout>
 
             <TextView
@@ -81,7 +86,7 @@
                 android:layout_width="181dp"
                 android:layout_height="31dp"
                 android:layout_margin="16dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textAlignment="center"
                 android:textColor="#686767"
                 android:textSize="20sp"
@@ -94,16 +99,16 @@
         android:id="@+id/addToChartBtn"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="Add To Chart"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textStyle="bold"
         android:layout_margin="16dp"
         android:background="@drawable/orange_button"
+        android:elevation="3dp"
         android:gravity="center"
+        android:text="@string/add_to_chart"
+        android:textColor="#616161"
         android:textSize="23sp"
-        android:textColor="#fff"
-        android:elevation="3dp"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

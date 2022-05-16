@@ -3,7 +3,6 @@ package com.example.androidproject.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,72 +10,71 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.androidproject.Domain.FoodDomain;
 import com.example.androidproject.R;
-import com.example.androidproject.helper.ManagmentCart;
+import com.example.androidproject.helper.ManagementCart;
 
 public class showDetailActivity extends AppCompatActivity {
     private TextView addToChartBtn;
     private TextView titleTxt, feeTxt, descriptionTxt, numberOrderTxt;
     private ImageView plusBtn, minusBtn, picFood;
-    private FoodDomain object;
+    private FoodDomain foodDomain;
     int numberOrder = 1 ;
-    private ManagmentCart managmentCart;
+    private ManagementCart managementCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_detail);
-        managmentCart = new ManagmentCart(this);
+        managementCart = new ManagementCart(this);
         intView();
-        getBundle();
+       // getBundle();
     }
 
-    private void getBundle() {
-        object = (FoodDomain) getIntent().getSerializableExtra("object");
+//    private void getBundle() {
+//        foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
+//
+//
+//        // Error Here ............................
+//        int drawableResourceId = this.getResources().getIdentifier(foodDomain.getPic(), "drawable", this.getPackageName());
+//
+//
+//        Glide.with(this).load(drawableResourceId).into(picFood);
+//
+//        titleTxt.setText(foodDomain.getTitle());
+//        feeTxt.setText("$"+ foodDomain.getFee());
+//        descriptionTxt.setText(foodDomain.getDescription());
+//        numberOrderTxt.setText(numberOrder);
+//
+//        plusBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                numberOrder=numberOrder+1;
+//                numberOrderTxt.setText(String.valueOf(numberOrder));
+//            }
+//        });
+//
+//        minusBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(numberOrder>1)
+//                    numberOrder = numberOrder -1 ;
+//            numberOrderTxt.setText(String.valueOf(numberOrder));
+//            }
+//
+//        });
+//        addToChartBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                foodDomain.setNumberInCart(numberOrder);
+//                managementCart.insertFood(foodDomain);
+//            }
+//        });
+//
+//
+//    }
 
-
-        // Error Here ............................
-        int drawableResourceId = this.getResources().getIdentifier(object.getPic(), "drawable", this.getPackageName());
-
-
-        Glide.with(this)
-                .load(drawableResourceId)
-                .into(picFood);
-        titleTxt.setText(object.getTitle());
-        feeTxt.setText("$"+object.getFee());
-        descriptionTxt.setText(object.getDescription());
-        numberOrderTxt.setText(numberOrder);
-
-        plusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberOrder=numberOrder+1;
-                numberOrderTxt.setText(String.valueOf(numberOrder));
-            }
-        });
-
-        minusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(numberOrder>1)
-                    numberOrder = numberOrder -1 ;
-            numberOrderTxt.setText(String.valueOf(numberOrder));
-            }
-
-        });
-        addToChartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                object.setNumberInCart(numberOrder);
-                managmentCart.insertFood(object);
-            }
-        });
-
-
-    }
-
-    private void intView() {
+    private void  intView() {
         addToChartBtn = findViewById(R.id.addToChartBtn);
-        titleTxt = findViewById(R.id.titletxt);
+        titleTxt = findViewById(R.id.titleText);
         feeTxt = findViewById(R.id.priceTxt);
         descriptionTxt = findViewById(R.id.descriptionTxt);
         numberOrderTxt = findViewById(R.id.numberOrderTxt);

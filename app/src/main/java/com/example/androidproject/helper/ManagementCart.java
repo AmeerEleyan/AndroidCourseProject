@@ -7,10 +7,10 @@ import com.example.androidproject.Domain.FoodDomain;
 
 import java.util.ArrayList;
 
-public class ManagmentCart {
+public class ManagementCart {
     private Context context;
     private  TinyDB tinyDB;
-    public ManagmentCart (Context context){
+    public ManagementCart(Context context){
         this.context = context;
         this.tinyDB = new TinyDB(context);
 
