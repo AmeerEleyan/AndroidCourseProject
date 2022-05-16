@@ -12,10 +12,11 @@ import com.example.androidproject.R;
  * ID : 1162193
  * Date : 30-4-2022
  * Android Development Course
- * We love you Benzema
- * not work station
+ * We love heat Benzema
+ * work station
  *
  */
+// New Comment
 
 
 public class SignUpActivity extends AppCompatActivity {
