@@ -19,16 +19,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-   /*     findViewById(R.id.sign_up_text).setOnClickListener(
+        findViewById(R.id.sign_up_text).setOnClickListener(
                 v->{
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 }
-        );*/
-        findViewById(R.id.sign_up_text).setOnClickListener(
+        );
+/*        findViewById(R.id.sign_up_text).setOnClickListener(
                 v->{
                     startActivity(new Intent(LoginActivity.this,showDetailActivity.class));
                 }
-        );
+        );*/
         findViewById(R.id.forget_password_text).setOnClickListener(
                 v->{
                     startActivity(new Intent(LoginActivity.this,ForgetPassword.class));

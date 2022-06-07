@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.androidproject.Domain.FoodDomain;
+import com.example.androidproject.Interface.ChangeNumberItemListener;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class ManagementCart {
         Toast.makeText(context, "Add To Your Cart", Toast.LENGTH_SHORT).show();
     }
 
-    private ArrayList<FoodDomain> getListCart() {
+    public ArrayList<FoodDomain> getListCart() {
 
         return tinyDB.getListObject("CartList");
 
@@ -44,13 +45,30 @@ public class ManagementCart {
 
 
 
+    public void plusNumberFood(ArrayList<FoodDomain> listFood, int position, ChangeNumberItemListener changeNumberItemsListener) {
+        listFood.get(position).setNumberInCart(listFood.get(position).getNumberInCart() + 1);
+        tinyDB.putListObject("CartList", listFood);
+        changeNumberItemsListener.changed();
+    }
 
+    public void minusNumberFood(ArrayList<FoodDomain> listfood, int position, ChangeNumberItemListener changeNumberItemsListener) {
+        if (listfood.get(position).getNumberInCart() == 1) {
+            listfood.remove(position);
+        } else {
+            listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() - 1);
+        }
+        tinyDB.putListObject("CartList", listfood);
+        changeNumberItemsListener.changed();
+    }
 
-
-
-
-
-
+    public Double getTotalFee() {
+        ArrayList<FoodDomain> listfood = getListCart();
+        double fee = 0;
+        for (int i = 0; i < listfood.size(); i++) {
+            fee = fee + (listfood.get(i).getFee() * listfood.get(i).getNumberInCart());
+        }
+        return fee;
+    }
 
 
 
