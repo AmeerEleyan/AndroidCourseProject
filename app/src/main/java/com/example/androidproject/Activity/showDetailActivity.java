@@ -39,10 +39,6 @@ public class showDetailActivity extends AppCompatActivity {
 
     private void getBundle() {
 
-
-        // Error Here ............................
-        int drawableResourceId = this.getResources().getIdentifier(meal.getPic(), "drawable", this.getPackageName());
-
         String image_path = "http://" + UserSession.IP_ADDRESS + meal.getPic();
         Glide.with(this).load(image_path).into(picFood);
 
@@ -51,29 +47,19 @@ public class showDetailActivity extends AppCompatActivity {
         descriptionTxt.setText(meal.getDescription());
         numberOrderTxt.setText(numberOrder+"");
 
-        plusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberOrder++;
-                numberOrderTxt.setText(String.valueOf(numberOrder));
-            }
+        plusBtn.setOnClickListener(view -> {
+            numberOrder++;
+            numberOrderTxt.setText(String.valueOf(numberOrder));
         });
 
-        minusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (numberOrder > 1)
-                    numberOrder--;
-                numberOrderTxt.setText(String.valueOf(numberOrder));
-            }
-
+        minusBtn.setOnClickListener(view -> {
+            if (numberOrder > 1)
+                numberOrder--;
+            numberOrderTxt.setText(String.valueOf(numberOrder));
         });
-        addToChartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                meal.setNumberInCart(numberOrder);
-                managementCart.insertFood(meal);
-            }
+        addToChartBtn.setOnClickListener(view -> {
+            meal.setNumberInCart(numberOrder);
+            managementCart.insertFood(meal);
         });
 
 

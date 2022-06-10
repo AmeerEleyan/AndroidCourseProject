@@ -9,8 +9,8 @@ import com.example.androidproject.Interface.ChangeNumberItemListener;
 import java.util.ArrayList;
 
 public class ManagementCart {
-    private Context context;
-    private  TinyDB tinyDB;
+    private final Context context;
+    private final TinyDB tinyDB;
     public ManagementCart(Context context){
         this.context = context;
         this.tinyDB = new TinyDB(context);
@@ -38,11 +38,8 @@ public class ManagementCart {
     }
 
     public ArrayList<Meal> getListCart() {
-
         return tinyDB.getListObject("CartList");
-
     }
-
 
 
     public void plusNumberFood(ArrayList<Meal> listFood, int position, ChangeNumberItemListener changeNumberItemsListener) {

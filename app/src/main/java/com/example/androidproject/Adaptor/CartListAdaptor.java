@@ -18,7 +18,7 @@ import com.example.androidproject.helper.ManagementCart;
 
 import java.util.ArrayList;
 
-public class CartListAdaptor extends RecyclerView.Adapter< CartListAdaptor.ViewHolder> {
+public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHolder> {
     private ArrayList<Meal> meals;
     private ManagementCart managementCart;
     private ChangeNumberItemListener changeNumberItemListener;
@@ -30,15 +30,13 @@ public class CartListAdaptor extends RecyclerView.Adapter< CartListAdaptor.ViewH
         this.changeNumberItemListener = changeNumberItemListener;
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return null;
     }
 
-    // WARNING : ADD @SuppressLint("RecyclerView") , Can Cause Error ......
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(meals.get(position).getTitle());
@@ -49,35 +47,17 @@ public class CartListAdaptor extends RecyclerView.Adapter< CartListAdaptor.ViewH
         int drawableReourceId = holder.itemView.getContext().getResources().getIdentifier(meals.get(position).getPic()
                 , "drawable", holder.itemView.getContext().getPackageName());
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableReourceId)
-                .into(holder.pic);
+        Glide.with(holder.itemView.getContext()).load(drawableReourceId).into(holder.pic);
 
-        holder.plusItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                managementCart.plusNumberFood(meals, position, new ChangeNumberItemListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemListener.changed();
-                    }
-                });
-            }
-        });
+        holder.plusItem.setOnClickListener(view -> managementCart.plusNumberFood(meals, position, () -> {
+            notifyDataSetChanged();
+            changeNumberItemListener.changed();
+        }));
 
-        holder.minusItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                managementCart.minusNumberFood(meals, position, new ChangeNumberItemListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemListener.changed();
-                    }
-                });
-            }
-        });
+        holder.minusItem.setOnClickListener(view -> managementCart.minusNumberFood(meals, position, () -> {
+            notifyDataSetChanged();
+            changeNumberItemListener.changed();
+        }));
     }
 
     @Override
@@ -85,7 +65,7 @@ public class CartListAdaptor extends RecyclerView.Adapter< CartListAdaptor.ViewH
         return meals.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, feeEachItem;
         ImageView pic, plusItem, minusItem;
         TextView totalEachItem, num;

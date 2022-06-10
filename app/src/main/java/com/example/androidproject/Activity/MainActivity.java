@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         this.recyclerViewCategoryList = findViewById(R.id.rv_category_items);
         this.recyclerViewCategoryList.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
         this.loadCategories();
+        this.bottomNavigation();
     }
 
     private void bottomNavigation() {
@@ -53,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CartListActivity.class)));
         homeBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
 
-        // Change Only
-   /*     homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-            }
-        });*/
 
     }
 
