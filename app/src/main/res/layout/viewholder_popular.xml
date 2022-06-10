@@ -47,18 +47,6 @@
         app:layout_constraintTop_toBottomOf="@+id/pic" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:text="$"
-        android:textColor="#FF3D00"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/fee"
-        app:layout_constraintEnd_toStartOf="@+id/fee"
-        app:layout_constraintTop_toBottomOf="@+id/pic" />
-
-    <TextView
         android:id="@+id/addBtn"
         android:layout_width="80dp"
         android:layout_height="30dp"
