@@ -1,5 +1,6 @@
 package com.example.androidproject.Adaptor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.androidproject.Activity.showDetailActivity;
-import com.example.androidproject.Domain.FoodDomain;
+import com.example.androidproject.DatabaseUtility.UserSession;
+import com.example.androidproject.Domain.Meal;
 import com.example.androidproject.R;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ import java.util.ArrayList;
 public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
 
-    ArrayList<FoodDomain> popularFood;
+    private final ArrayList<Meal> meals;
 
-    public MealAdaptor(ArrayList<FoodDomain> categories) {
-        this.popularFood = categories;
+    public MealAdaptor(ArrayList<Meal> categories) {
+        this.meals = categories;
     }
 
     @NonNull
@@ -37,25 +39,20 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MealAdaptor.ViewHolder holder, int position) {
-        holder.title.setText(popularFood.get(position).getTitle());
-        holder.fee.setText(String.valueOf(popularFood.get(position).getFee()));
+        Meal meal = meals.get(position);
+        holder.title.setText(meal.getTitle());
+        holder.fee.setText(String.valueOf(meal.getSellingPrice()));
 
+        String image_path = "http://" + UserSession.IP_ADDRESS + meal.getPic();
+        Glide.with(holder.itemView.getContext()).load(image_path).into(holder.pic);
 
-        int drawableResourceID = holder.itemView.getContext().getResources().getIdentifier
-                (popularFood.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
-        Glide.with(holder.itemView.getContext()).load(drawableResourceID).into(holder.pic);
+        int myLastPosition = holder.getAdapterPosition();
+        holder.addBtn.setOnClickListener(view -> {
 
+            Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
+            intent.putExtra("object", meals.get(myLastPosition));
+            holder.itemView.getContext().startActivity(intent);
 
-        int myLastPosition =holder.getAdapterPosition();
-        holder.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
-                intent.putExtra("object",popularFood.get(myLastPosition));
-                holder.itemView.getContext().startActivity(intent);
-
-            }
         });
      /*   holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +66,7 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return popularFood.size();
+        return meals.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

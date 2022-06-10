@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.androidproject.Domain.FoodDomain;
+import com.example.androidproject.Domain.Meal;
 import com.example.androidproject.R;
 import com.example.androidproject.helper.ManagementCart;
 
@@ -16,7 +16,7 @@ public class showDetailActivity extends AppCompatActivity {
     private TextView addToChartBtn;
     private TextView titleTxt, feeTxt, descriptionTxt, numberOrderTxt;
     private ImageView plusBtn, minusBtn, picFood;
-    private FoodDomain foodDomain;
+    private Meal meal;
     int numberOrder = 1 ;
     private ManagementCart managementCart;
 
@@ -30,18 +30,18 @@ public class showDetailActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
-        foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
+        meal = (Meal) getIntent().getSerializableExtra("object");
 
 
         // Error Here ............................
-        int drawableResourceId = this.getResources().getIdentifier(foodDomain.getPic(), "drawable", this.getPackageName());
+        int drawableResourceId = this.getResources().getIdentifier(meal.getPic(), "drawable", this.getPackageName());
 
 
         Glide.with(this).load(drawableResourceId).into(picFood);
 
-        titleTxt.setText(foodDomain.getTitle());
-        feeTxt.setText("$"+ foodDomain.getFee());
-        descriptionTxt.setText(foodDomain.getDescription());
+        titleTxt.setText(meal.getTitle());
+        feeTxt.setText("$"+ meal.getSellingPrice());
+        descriptionTxt.setText(meal.getDescription());
         numberOrderTxt.setText(numberOrder);
 
         plusBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +64,8 @@ public class showDetailActivity extends AppCompatActivity {
         addToChartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                foodDomain.setNumberInCart(numberOrder);
-                managementCart.insertFood(foodDomain);
+                meal.setNumberInCart(numberOrder);
+                managementCart.insertFood(meal);
             }
         });
 

@@ -2,25 +2,27 @@ package com.example.androidproject.Domain;
 
 import java.io.Serializable;
 
-public class FoodDomain implements Serializable {
+public class Meal implements Serializable {
+    private int id;
     private String title;
     private String pic;
     private String description;
-    private Double fee;
+    private Double sellingPrice;
     private int numberInCart;
 
-    public FoodDomain(String title, String pic, String description, Double fee) {
+    public Meal(int id, String title, String pic, String description, Double sellingPrice) {
+        this.id = id;
         this.title = title;
         this.pic = pic;
         this.description = description;
-        this.fee = fee;
+        this.sellingPrice = sellingPrice;
     }
 
-    public FoodDomain(String title, String pic, String description, Double fee, int numberInCart) {
+    public Meal(String title, String pic, String description, Double sellingPrice, int numberInCart) {
         this.title = title;
         this.pic = pic;
         this.description = description;
-        this.fee = fee;
+        this.sellingPrice = sellingPrice;
         this.numberInCart = numberInCart;
     }
 
@@ -48,12 +50,12 @@ public class FoodDomain implements Serializable {
         this.description = description;
     }
 
-    public Double getFee() {
-        return fee;
+    public Double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setFee(Double fee) {
-        this.fee = fee;
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public int getNumberInCart() {
@@ -62,5 +64,13 @@ public class FoodDomain implements Serializable {
 
     public void setNumberInCart(int numberInCart) {
         this.numberInCart = numberInCart;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
