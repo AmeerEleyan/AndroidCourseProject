@@ -76,7 +76,7 @@ public class CategoryMealsActivity extends AppCompatActivity {
                         } catch (Exception e) {
 
                         }
-                        MealAdaptor adapter = new MealAdaptor(categoryMealsArrayList);
+                        MealAdaptor adapter = new MealAdaptor(CategoryMealsActivity.this,categoryMealsArrayList);
                         recyclerViewMealList.setAdapter(adapter);
                     }
                 }, new Response.ErrorListener() {

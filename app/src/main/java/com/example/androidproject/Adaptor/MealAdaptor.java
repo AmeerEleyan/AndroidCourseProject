@@ -2,6 +2,7 @@ package com.example.androidproject.Adaptor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.Activity.CategoryMealsActivity;
 import com.example.androidproject.Activity.showDetailActivity;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.Meal;
@@ -23,8 +25,10 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
 
     private final ArrayList<Meal> meals;
+    private Context context;
 
-    public MealAdaptor(ArrayList<Meal> categories) {
+    public MealAdaptor(Context context, ArrayList<Meal> categories) {
+        this.context = context;
         this.meals = categories;
     }
 
@@ -48,11 +52,13 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
         int myLastPosition = holder.getAdapterPosition();
         holder.addBtn.setOnClickListener(view -> {
-
-            Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
-            intent.putExtra("object", meals.get(myLastPosition));
-            holder.itemView.getContext().startActivity(intent);
-
+            Intent intent = new Intent(context, showDetailActivity.class);
+            intent.putExtra("ID", meal.getId()+"");
+            intent.putExtra("NAME", meal.getTitle()+"");
+            intent.putExtra("DESCRIPTION", meal.getDescription()+"");
+            intent.putExtra("SELLING", meal.getSellingPrice()+"");
+            intent.putExtra("IMAGE", meal.getPic()+"");
+            context.startActivity(intent);
         });
      /*   holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +69,7 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
         });*/
 
     }
+
 
     @Override
     public int getItemCount() {
