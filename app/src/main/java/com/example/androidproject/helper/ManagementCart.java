@@ -7,33 +7,46 @@ import com.example.androidproject.Domain.Meal;
 import com.example.androidproject.Interface.ChangeNumberItemListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ManagementCart {
     private final Context context;
     private final TinyDB tinyDB;
+    HashMap<Integer,BillDetails> listFood = new HashMap<>();
+
     public ManagementCart(Context context){
         this.context = context;
         this.tinyDB = new TinyDB(context);
 
     }
     public void insertFood (Meal item){
-        ArrayList<Meal> listFood = getListCart();
-        boolean exitAlready = false;
-        int n = 0 ;
-        for (int i = 0 ; i < listFood.size() ; i++){
-            if (listFood.get(i).getTitle().equalsIgnoreCase(item.getTitle())){
-                exitAlready = true;
-                n = i ;
-                break;
-            }
-        }
-        if (exitAlready){
-            listFood.get(n).setNumberInCart(item.getNumberInCart());
 
-        }else {
-            listFood.add(item);
-        }
-        tinyDB.putListObject("CardList",listFood);
+
+
+
+
+
+
+
+//        ArrayList<Meal> listFood = getListCart();
+//        boolean exitAlready = false;
+//        int n = 0 ;
+//        for (int i = 0 ; i < listFood.size() ; i++){
+//            if (listFood.get(i).getTitle().equalsIgnoreCase(item.getTitle())){
+//                exitAlready = true;
+//                n = i ;
+//                break;
+//            }
+//
+//        }
+//        if (exitAlready){
+//            listFood.get(n).setNumberInCart(item.getNumberInCart());
+//
+//        }else {
+//            listFood.add(item);
+//        }
+
+    //    tinyDB.putListObject("CardList",listFood);
         Toast.makeText(context, "Add To Your Cart", Toast.LENGTH_SHORT).show();
     }
 
@@ -59,10 +72,10 @@ public class ManagementCart {
     }
 
     public Double getTotalFee() {
-        ArrayList<Meal> listfood = getListCart();
+        ArrayList<Meal> listFood = getListCart();
         double fee = 0;
-        for (int i = 0; i < listfood.size(); i++) {
-            fee = fee + (listfood.get(i).getSellingPrice() * listfood.get(i).getNumberInCart());
+        for (int i = 0; i < listFood.size(); i++) {
+            fee = fee + (listFood.get(i).getSellingPrice() * listFood.get(i).getNumberInCart());
         }
         return fee;
     }
