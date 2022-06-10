@@ -86,8 +86,8 @@ public class SignUpActivity extends AppCompatActivity {
                     if (!response.isEmpty()) {
                         responseJsonObject = new JSONObject(response);
                         if (responseJsonObject.has("insert") && !responseJsonObject.isNull("insert")) {
-                            JSONObject responceJsonObject2 = responseJsonObject.getJSONObject("insert");
-                            if (responceJsonObject2.getString("error").equals("false")) {
+                            JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("insert");
+                            if (responseJsonObject2.getString("error").equals("false")) {
                                 Toast.makeText(SignUpActivity.this, "new account was created successfully", Toast.LENGTH_SHORT).show();
                                 goToLoginActivity();
                             }
