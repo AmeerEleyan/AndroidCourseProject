@@ -1,13 +1,14 @@
 package com.example.androidproject.Domain;
 
 public class CategoryDomain {
+    private int id;
+    private String title;
+    private String category_image_path;
 
-    private  String title;
-    private  String pic;
-
-    public CategoryDomain(String title, String pic) {
+    public CategoryDomain(int id, String title, String category_image_path) {
+        this.id = id;
         this.title = title;
-        this.pic = pic;
+        this.category_image_path = category_image_path;
     }
 
     public String getTitle() {
@@ -18,11 +19,19 @@ public class CategoryDomain {
         this.title = title;
     }
 
-    public String getPic() {
-        return pic;
+    public String getCategory_image_path() {
+        return category_image_path;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setCategory_image_path(String category_image_path) {
+        this.category_image_path = category_image_path;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

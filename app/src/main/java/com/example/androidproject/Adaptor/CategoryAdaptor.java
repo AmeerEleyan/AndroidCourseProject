@@ -1,5 +1,7 @@
 package com.example.androidproject.Adaptor;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.CategoryDomain;
 import com.example.androidproject.R;
 
@@ -20,62 +22,37 @@ import java.util.ArrayList;
 public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder> {
 
 
-    ArrayList<CategoryDomain> categories;
+    private ArrayList<CategoryDomain> categories;
+    private Context context;
 
-    public CategoryAdaptor(ArrayList<CategoryDomain> categories) {
+    public CategoryAdaptor(Context context, ArrayList<CategoryDomain> categories) {
+        this.context = context;
         this.categories = categories;
     }
 
     @NonNull
     @Override
     public CategoryAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
-
-        return new ViewHolder(inflate);
+        CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_category, parent, false);
+        return new ViewHolder(v);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdaptor.ViewHolder holder, int position) {
-        holder.categoryName.setText(categories.get(position).getTitle());
-        String picUrl = " ";
-        switch (position) {
-
-            case 0: {
-                picUrl = "cat_1";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background1));
-                break;
+        final CategoryDomain categoryDomain = categories.get(position);
+        CardView cardView = holder.cardView;
+        ImageView imageView = (ImageView) cardView.findViewById(R.id.category_image);
+        String image_path = "http://" + UserSession.IP_ADDRESS + categoryDomain.getCategory_image_path();
+        Glide.with(context).load(image_path).into(imageView);
+        TextView txt = (TextView) cardView.findViewById(R.id.txtName);
+        txt.setText(categoryDomain.getTitle());
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
             }
-
-            case 1: {
-                picUrl = "cat_2";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background2));
-                break;
-            }
-
-            case 2: {
-                picUrl = "cat_3";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background3));
-                break;
-            }
-
-            case 3: {
-                picUrl = "cat_4";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background4));
-                break;
-            }
-
-
-            case 4: {
-                picUrl = "cat_5";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background5));
-                break;
-            }
-        }
-
-        int drawableResourceID = holder.itemView.getContext().getResources().getIdentifier
-                (picUrl, "drawable", holder.itemView.getContext().getPackageName());
-        Glide.with(holder.itemView.getContext()).load(drawableResourceID).into(holder.categoryPic);
+        });
 
     }
 
@@ -86,15 +63,12 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView categoryName;
-        ImageView categoryPic;
-        ConstraintLayout mainLayout;
+        private final CardView cardView;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            categoryName = itemView.findViewById(R.id.categoryPizzaName);
-            categoryPic = itemView.findViewById(R.id.categoryPizzaPic);
-            mainLayout = itemView.findViewById(R.id.categoryLayout);
+        public ViewHolder(CardView cardView) {
+            super(cardView);
+            this.cardView = cardView;
         }
+
     }
 }

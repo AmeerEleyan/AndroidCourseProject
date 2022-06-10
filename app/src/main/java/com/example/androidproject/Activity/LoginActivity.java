@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,9 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                     if (!response.isEmpty()) {
                         responseJsonObject = new JSONObject(response);
                         if (responseJsonObject.has("user") && !responseJsonObject.isNull("user")) {
-                            JSONObject responceJsonObject2 = responseJsonObject.getJSONObject("user");
-                            UserSession.USER_ID_IN_SESSION = Integer.parseInt(responceJsonObject2.getString("id"));
-                            UserSession.USER_TYPE = Integer.parseInt(responceJsonObject2.getString("login_type"));
+                            JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("user");
+                            UserSession.USER_ID_IN_SESSION = Integer.parseInt(responseJsonObject2.getString("id"));
+                            UserSession.USER_TYPE = Integer.parseInt(responseJsonObject2.getString("login_type"));
                             if (UserSession.USER_TYPE == 1) {
                                 goToMainActivity();
                             }
@@ -115,4 +119,5 @@ public class LoginActivity extends AppCompatActivity {
     public void handleSignUp(View view) {
         startActivity(new Intent(this, SignUpActivity.class));
     }
+
 }
