@@ -26,51 +26,51 @@ public class showDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_detail);
         managementCart = new ManagementCart(this);
         intView();
-       // getBundle();
+        getBundle();
     }
 
-//    private void getBundle() {
-//        foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
-//
-//
-//        // Error Here ............................
-//        int drawableResourceId = this.getResources().getIdentifier(foodDomain.getPic(), "drawable", this.getPackageName());
-//
-//
-//        Glide.with(this).load(drawableResourceId).into(picFood);
-//
-//        titleTxt.setText(foodDomain.getTitle());
-//        feeTxt.setText("$"+ foodDomain.getFee());
-//        descriptionTxt.setText(foodDomain.getDescription());
-//        numberOrderTxt.setText(numberOrder);
-//
-//        plusBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                numberOrder=numberOrder+1;
-//                numberOrderTxt.setText(String.valueOf(numberOrder));
-//            }
-//        });
-//
-//        minusBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(numberOrder>1)
-//                    numberOrder = numberOrder -1 ;
-//            numberOrderTxt.setText(String.valueOf(numberOrder));
-//            }
-//
-//        });
-//        addToChartBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                foodDomain.setNumberInCart(numberOrder);
-//                managementCart.insertFood(foodDomain);
-//            }
-//        });
-//
-//
-//    }
+    private void getBundle() {
+        foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
+
+
+        // Error Here ............................
+        int drawableResourceId = this.getResources().getIdentifier(foodDomain.getPic(), "drawable", this.getPackageName());
+
+
+        Glide.with(this).load(drawableResourceId).into(picFood);
+
+        titleTxt.setText(foodDomain.getTitle());
+        feeTxt.setText("$"+ foodDomain.getFee());
+        descriptionTxt.setText(foodDomain.getDescription());
+        numberOrderTxt.setText(numberOrder);
+
+        plusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOrder=numberOrder+1;
+                numberOrderTxt.setText(String.valueOf(numberOrder));
+            }
+        });
+
+        minusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(numberOrder>1)
+                    numberOrder = numberOrder -1 ;
+            numberOrderTxt.setText(String.valueOf(numberOrder));
+            }
+
+        });
+        addToChartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                foodDomain.setNumberInCart(numberOrder);
+                managementCart.insertFood(foodDomain);
+            }
+        });
+
+
+    }
 
     private void  intView() {
         addToChartBtn = findViewById(R.id.addToChartBtn);
