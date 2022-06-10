@@ -3,9 +3,12 @@ package com.example.androidproject.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,27 +36,66 @@ import java.util.Map;
  * Android Course
  */
 public class LoginActivity extends AppCompatActivity {
+
     private RequestQueue queue;
     private EditText uname, passwd;
     private JSONObject responseJsonObject;
-
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private CheckBox rememberMeCB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         this.uname = findViewById(R.id.uname);
         this.passwd = findViewById(R.id.password_sign_up);
+        this.rememberMeCB = findViewById(R.id.remember_me);
+
+        setupSharedPrefs();
+        checkPrefs();
+
         queue = Volley.newRequestQueue(this);
     }
 
+    private void checkPrefs() {
+        boolean flag = sharedPreferences.getBoolean("FLAG",false);
+        if(flag){
+            String name  = sharedPreferences.getString("NAME","");
+            String password = sharedPreferences.getString("PASSWORD","");
+            this.uname.setText(name);
+            this.passwd.setText(password);
+            this.rememberMeCB.setChecked(true);
+
+        }
+    }
+
+    private void setupSharedPrefs() {
+        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        this.editor = sharedPreferences.edit();
+    }
+
     public void handleLogin(View view) {
-        this.login(this.uname.getText().toString().trim(), this.passwd.getText().toString().trim());
+
+
+        String name = this.uname.getText().toString();
+        String pass = this.passwd.getText().toString() ;
+        if( rememberMeCB.isChecked() ){
+            this.editor.putString("NAME",name.trim());
+            this.editor.putString("PASSWORD",pass.trim());
+            this.editor.putBoolean("FLAG",true);
+            this.editor.commit();
+        }
+        this.login(name.trim(), pass.trim());
+
     }
 
     private void login(String user_name, String pass_word) {
         String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/user_type.php";
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                url,
+                new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
