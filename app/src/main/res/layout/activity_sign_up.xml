@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
+            android:onClick="handleLogin"
             android:text="@string/login"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -83,6 +84,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/background_btn"
+        android:onClick="handleSignUp"
         android:text="@string/sign_up"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -96,7 +98,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="34dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button"
@@ -105,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/uname_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -119,21 +121,21 @@
             android:padding="16dp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/display_name_sigin_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/background_edittext"
-            android:drawableEnd="@drawable/ic_email"
+            android:drawableEnd="@drawable/ic_password"
             android:elevation="2dp"
             android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
+            android:hint="@string/display_name"
+            android:inputType="text"
             android:padding="16dp" />
 
         <EditText
-            android:id="@+id/password_text2"
+            android:id="@+id/password_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -147,7 +149,7 @@
             android:padding="16dp" />
 
         <EditText
-            android:id="@+id/password_text3"
+            android:id="@+id/confirm_password_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
