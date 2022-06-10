@@ -17,18 +17,18 @@ import com.example.androidproject.R;
 
 import java.util.ArrayList;
 
-public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHolder> {
+public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
 
     ArrayList<FoodDomain> popularFood;
 
-    public PopularAdaptor(ArrayList<FoodDomain> categories) {
+    public MealAdaptor(ArrayList<FoodDomain> categories) {
         this.popularFood = categories;
     }
 
     @NonNull
     @Override
-    public PopularAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MealAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent, false);
 
         return new ViewHolder(inflate);
@@ -36,7 +36,7 @@ public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularAdaptor.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MealAdaptor.ViewHolder holder, int position) {
         holder.title.setText(popularFood.get(position).getTitle());
         holder.fee.setText(String.valueOf(popularFood.get(position).getFee()));
 

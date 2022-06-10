@@ -4,8 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Andriod-Final/AndroidCourseProject/app/src/main/res/layout/activity_cart_list.xml" value="0.264" />
-        <entry key="..\:/Andriod-Final/AndroidCourseProject/app/src/main/res/layout/activity_forget_password.xml" value="0.22826086956521738" />
-        <entry key="..\:/Andriod-Final/AndroidCourseProject/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Andriod-Final/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
         <entry key="..\:/Andriod-Final/AndroidCourseProject/app/src/main/res/layout/viewholder_cart.xml" value="0.4" />
         <entry key="..\:/AndriodProject/AndroidCourseProject/app/src/main/res/drawable/category_background1.xml" value="0.1" />
@@ -41,6 +39,7 @@
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_show_detail.xml" value="0.161231884057971" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/card_view_category.xml" value="0.4" />
+        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/categories.xml" value="0.161231884057971" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/viewholder_cart.xml" value="0.161231884057971" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/viewholder_category.xml" value="0.161231884057971" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/viewholder_popular.xml" value="0.20208333333333334" />

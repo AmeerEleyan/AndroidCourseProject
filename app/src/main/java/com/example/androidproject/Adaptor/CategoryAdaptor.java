@@ -1,6 +1,7 @@
 package com.example.androidproject.Adaptor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.Activity.CategoryMealsActivity;
+import com.example.androidproject.Activity.LoginActivity;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.CategoryDomain;
 import com.example.androidproject.R;
@@ -50,9 +53,15 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                Intent intent = new Intent(context, CategoryMealsActivity.class);
+                intent.putExtra("CATEGORY_ID", categoryDomain.getId());
+                context.startActivity(intent);
             }
         });
+
+    }
+
+    private void openCategoryActivity() {
 
     }
 
