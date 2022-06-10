@@ -46,13 +46,24 @@ public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHold
         Glide.with(holder.itemView.getContext()).load(drawableResourceID).into(holder.pic);
 
 
+        int myLastPosition =holder.getAdapterPosition();
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
+                intent.putExtra("object",popularFood.get(myLastPosition));
+                holder.itemView.getContext().startActivity(intent);
+
             }
         });
+     /*   holder.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
+            }
+        });*/
 
     }
 
