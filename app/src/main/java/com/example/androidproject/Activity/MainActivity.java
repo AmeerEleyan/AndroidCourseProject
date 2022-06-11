@@ -50,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
     private void bottomNavigation() {
         FloatingActionButton floatingActionButton = findViewById(R.id.cartBtn1);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
-
+        LinearLayout logout = findViewById(R.id.logoutBtn);
         floatingActionButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CartListActivity.class)));
         homeBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
-
+        logout.setOnClickListener(view -> {
+            UserSession.USER_ID_IN_SESSION = -1;
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        });
 
     }
 

@@ -92,8 +92,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 goToLoginActivity();
                             }
                         }
-                    } else {
-                        Toast.makeText(SignUpActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

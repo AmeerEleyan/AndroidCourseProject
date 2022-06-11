@@ -37,7 +37,6 @@ import java.util.Map;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    private RequestQueue queue;
     private EditText uname, passwd;
     private JSONObject responseJsonObject;
     private SharedPreferences sharedPreferences;
@@ -55,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         setupSharedPrefs();
         checkPrefs();
 
-        queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(this);
     }
 
     private void checkPrefs() {
