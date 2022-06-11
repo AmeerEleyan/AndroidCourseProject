@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="@string/AddEmployee"
+        android:text="AddEmployee"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -29,12 +29,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:contentDescription="RestaurantLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/restaurant_logo"
-        android:contentDescription="@string/RestaurantLogo" />
+        app:srcCompat="@drawable/restaurant_logo" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -101,7 +101,7 @@
             android:drawableEnd="@drawable/ic_user"
             android:elevation="2dp"
             android:ems="10"
-            android:hint="@string/EmployeeName"
+            android:hint="EmployeeName"
             android:inputType="text"
             android:padding="15dp"
             android:textColorHint="#757575" />
@@ -116,13 +116,14 @@
             android:drawableEnd="@android:drawable/ic_lock_power_off"
             android:elevation="2dp"
             android:ems="10"
-            android:hint="@string/EmployeeSalary"
+            android:hint="EmployeeSalary"
             android:inputType="text"
             android:padding="15dp"
             android:textColorHint="#757575" />
 
 
         <RadioGroup
+            android:id="@+id/radioGroupAddEmployee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -131,9 +132,10 @@
                 android:id="@+id/radio_Chef"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
+                android:checkedButton="@+id/radio_Chef"
                 android:minHeight="48dp"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/Chef" />
+                android:text="Chef" />
 
             <RadioButton
                 android:id="@+id/radio_DeliveryEmployee"
@@ -141,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/DeliveryEmployee" />
+                android:text="DeliveryEmployee" />
         </RadioGroup>
 
 
@@ -156,7 +158,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/background_btn"
         android:onClick="handleAddEmployeeEmployeePage"
-        android:text="@string/AddEmployee"
+        android:text="AddEmployee"
         android:textColor="#212121"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

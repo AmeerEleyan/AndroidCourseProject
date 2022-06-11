@@ -22,27 +22,4 @@
     <string name="todo">TODO</string>
     <string name="dollar">$</string>
     <string name="password">password</string>
-    <string name="GenerateReport">Generate Report</string>
-    <string name="AddEmployee">Add Employee</string>
-    <string name="RestaurantLogo">ResturantLogo</string>
-    <string name="EmployeeName">EmployeeName</string>
-    <string name="EmployeeSalary">EmployeeSalary</string>
-    <string name="Chef">Chef</string>
-    <string name="DeliveryEmployee">DeliveryEmployee</string>
-    <string name="Report">Report</string>
-    <string name="my_cart">My Cart</string>
-    <string name="scrollOfView">ScrollOfView</string>
-    <string name="item_total">Item Total</string>
-    <string name="$0">$0</string>
-    <string name="delivery_services">Delivery Services</string>
-    <string name="tax">Tax</string>
-    <string name="total">Total</string>
-    <string name="checkout">CheckOut</string>
-    <string name="your_cart_is_empty">Your Cart Is Empty</string>
-    <string name="home">Home</string>
-    <string name="profile">Profile</string>
-    <string name="support">Support</string>
-    <string name="settings">Settings</string>
-    <string name="totalProfit">totalProfit</string>
-    <string name="TotalProfit">Total Profit</string>
 </resources>

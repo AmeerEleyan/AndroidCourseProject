@@ -35,10 +35,10 @@ import java.util.Map;
 
 public class CartListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewList;
-    private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt, buy;
+    private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt, buy, discounts;
     private ScrollView scrollView;
     private ManagementCart managementCart;
-    private String billID;
+    private String billID, customerDiscount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CartListActivity extends AppCompatActivity {
     private void bottomNavigation() {
         FloatingActionButton floatingActionButton = findViewById(R.id.cartBtn2);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
-        LinearLayout logout = findViewById(R.id.logoutBtn);
+        LinearLayout logout = findViewById(R.id.logoutBtn2);
         floatingActionButton.setOnClickListener(view -> startActivity(new Intent(CartListActivity.this, CartListActivity.class)));
         homeBtn.setOnClickListener(view -> startActivity(new Intent(CartListActivity.this, MainActivity.class)));
         logout.setOnClickListener(view -> {
@@ -74,6 +74,7 @@ public class CartListActivity extends AppCompatActivity {
         emptyTxt = findViewById(R.id.emptyText);
         scrollView = findViewById(R.id.scrollView3);
         buy = findViewById(R.id.buy_btn);
+        discounts = findViewById(R.id.discountTxt);
 
     }
 
@@ -217,6 +218,7 @@ public class CartListActivity extends AppCompatActivity {
         taxTxt.setText("" + tax);
         deliveryTxt.setText("" + delivery);
         totalTxt.setText("" + total);
+        discounts.setText(customerDiscount + "");
     }
 
     private void goToMainActivity() {
