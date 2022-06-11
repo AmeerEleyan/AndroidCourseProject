@@ -49,11 +49,9 @@ public class ManagementCart {
     public boolean isCartEmpty() {
         return listFood.isEmpty();
     }
-    public int size(){
-        return listFood.size();
-    }
 
-    public ArrayList<Meal> getListCart() {
+
+    public static ArrayList<Meal> getListCart() {
         ArrayList<Meal> meals = new ArrayList<>();
         listFood.forEach((k, v) -> {
             meals.add(v);

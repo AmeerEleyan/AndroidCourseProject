@@ -164,13 +164,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/buy_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="16dp"
                 android:background="@drawable/orange_button"
                 android:gravity="center"
-                android:text="CheckOut"
+                android:text="Buy"
                 android:textColor="#fff"
                 android:textSize="25sp"
                 android:textStyle="bold" />
