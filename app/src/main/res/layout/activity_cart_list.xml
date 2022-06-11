@@ -11,7 +11,7 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="ScrollOfView"
+        android:contentDescription="@string/scrollOfView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="My Cart"
+                android:text="@string/my_cart"
                 android:textAlignment="center"
                 android:textColor="#ff3d00"
                 android:textSize="20sp"
@@ -54,11 +54,11 @@
 
                 <TextView
                     android:id="@+id/ItemTotal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Item Total"
+                    android:text="@string/item_total"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -67,7 +67,7 @@
                     android:id="@+id/totalFeelTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="@string/$0"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -84,11 +84,11 @@
 
                 <TextView
                     android:id="@+id/DeliveryTxt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Delivery Services"
+                    android:text="@string/delivery_services"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -97,7 +97,7 @@
                     android:id="@+id/deliveryServiceTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="@string/$0"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -114,11 +114,11 @@
 
                 <TextView
                     android:id="@+id/taxText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Tax"
+                    android:text="@string/tax"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -127,7 +127,7 @@
                     android:id="@+id/taxTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="@string/$0"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -144,11 +144,11 @@
 
                 <TextView
                     android:id="@+id/Total"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Total"
+                    android:text="@string/total"
                     android:textColor="#373b54"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -157,7 +157,7 @@
                     android:id="@+id/totalTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="@string/$0"
                     android:textColor="#373b54"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -170,7 +170,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/orange_button"
                 android:gravity="center"
-                android:text="CheckOut"
+                android:text="@string/checkout"
                 android:textColor="#fff"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -179,7 +179,7 @@
                 android:id="@+id/emptyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Cart Is Empty"
+                android:text="@string/your_cart_is_empty"
                 android:textSize="16sp"
                 android:visibility="gone" />
 
@@ -230,7 +230,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Home"
+                        android:text="@string/home"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -255,7 +255,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="@string/profile"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -304,7 +304,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Support"
+                        android:text="@string/support"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -329,7 +329,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="@string/settings"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
