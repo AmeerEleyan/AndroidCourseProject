@@ -2,6 +2,7 @@ package com.example.androidproject.Adaptor;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,29 +12,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidproject.Activity.CartListActivity;
+import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.Meal;
-import com.example.androidproject.Interface.ChangeNumberItemListener;
 import com.example.androidproject.R;
 import com.example.androidproject.helper.ManagementCart;
 
 import java.util.ArrayList;
 
 public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHolder> {
-    private ArrayList<Meal> meals;
-    private ManagementCart managementCart;
-    private ChangeNumberItemListener changeNumberItemListener;
+    private final ArrayList<Meal> meals;
+    private final ManagementCart managementCart;
 
 
-    public CartListAdaptor(ArrayList<Meal> meals, Context context, ChangeNumberItemListener changeNumberItemListener) {
+    public CartListAdaptor(ArrayList<Meal> meals, Context context) {
         this.meals = meals;
         this.managementCart = new ManagementCart(context);
-        this.changeNumberItemListener = changeNumberItemListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cart, parent, false);
+        return new ViewHolder(inflate);
     }
 
 
@@ -44,25 +45,24 @@ public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHo
         holder.totalEachItem.setText(String.valueOf(Math.round((meals.get(position).getNumberInCart() * meals.get(position).getSellingPrice()) * 100) / 100));
         holder.num.setText(String.valueOf(meals.get(position).getNumberInCart()));
 
-        int drawableReourceId = holder.itemView.getContext().getResources().getIdentifier(meals.get(position).getPic()
-                , "drawable", holder.itemView.getContext().getPackageName());
+        String image_path = "http://" + UserSession.IP_ADDRESS + meals.get(position).getPic();
+        Glide.with(holder.itemView.getContext()).load(image_path).into(holder.pic);
 
-        Glide.with(holder.itemView.getContext()).load(drawableReourceId).into(holder.pic);
-
-        holder.plusItem.setOnClickListener(view -> managementCart.plusNumberFood(meals, position, () -> {
+        holder.plusItem.setOnClickListener(v -> {
+            managementCart.plusNumberFood(meals.get(position).getId());
             notifyDataSetChanged();
-            changeNumberItemListener.changed();
-        }));
 
-        holder.minusItem.setOnClickListener(view -> managementCart.minusNumberFood(meals, position, () -> {
+        });
+        holder.minusItem.setOnClickListener(v -> {
+            managementCart.minusNumberFood(meals.get(position).getId());
             notifyDataSetChanged();
-            changeNumberItemListener.changed();
-        }));
+        });
     }
 
     @Override
     public int getItemCount() {
         return meals.size();
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

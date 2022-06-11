@@ -1,11 +1,11 @@
 package com.example.androidproject.helper;
 
 public class BillDetails {
-    private int price;
+    private double price;
     private int quantity;
 
 
-    public BillDetails(int price, int quantity) {
+    public BillDetails(double price, int quantity) {
         this.price = price;
         this.quantity = quantity;
     }
@@ -13,11 +13,11 @@ public class BillDetails {
     public BillDetails() {
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

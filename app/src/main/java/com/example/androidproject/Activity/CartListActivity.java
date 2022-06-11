@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -19,18 +18,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CartListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewList;
-    private ManagementCart managementCart;
     TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt;
     private ScrollView scrollView;
+    private ManagementCart managementCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_list);
+        this.managementCart = new ManagementCart(this);
         initView();
         initList();
         CalculateCart();
         bottomNavigation();
+
     }
 
     private void bottomNavigation() {
@@ -56,14 +57,12 @@ public class CartListActivity extends AppCompatActivity {
     private void initList() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        RecyclerView.Adapter<CartListAdaptor.ViewHolder> adapter = new CartListAdaptor(managementCart.getListCart(), this, this::CalculateCart);
-
-        recyclerViewList.setAdapter(adapter);
-        if (managementCart.getListCart().isEmpty()) {
+        CartListAdaptor adaptor = new CartListAdaptor(managementCart.getListCart(), this);
+        recyclerViewList.setAdapter(adaptor);
+        if (managementCart.isCartEmpty()) {
             emptyTxt.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
         } else {
-
             emptyTxt.setVisibility(View.GONE);
             scrollView.setVisibility(View.VISIBLE);
         }
@@ -82,4 +81,5 @@ public class CartListActivity extends AppCompatActivity {
         deliveryTxt.setText("$" + delivery);
         totalTxt.setText("$" + total);
     }
+
 }
