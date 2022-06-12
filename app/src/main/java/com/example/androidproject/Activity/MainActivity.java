@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                 categoryDomainArrayList.add(categoryDomain);
                             }
                         } catch (Exception e) {
+                            e.printStackTrace();
 
                         }
 
