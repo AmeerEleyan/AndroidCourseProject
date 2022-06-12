@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidproject.DatabaseUtility.UserSession;
@@ -30,13 +30,11 @@ import java.util.Map;
  * We love heat Benzema
  * work station
  */
-// New Comment
 
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText uname, display_name, passwd, conf_passwd;
-    private RequestQueue queue;
     private JSONObject responseJsonObject;
 
     @Override
@@ -47,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         this.display_name = findViewById(R.id.display_name_sigin_up);
         this.passwd = findViewById(R.id.password_sign_up);
         this.conf_passwd = findViewById(R.id.confirm_password_sign_up);
-        queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(this);
     }
 
     public void handleLogin(View view) {
@@ -77,62 +75,52 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void handleSignUp(String uname, String passwd, String display_name) {
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_customer_account.php";
-        RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    if (!response.isEmpty()) {
-                        responseJsonObject = new JSONObject(response);
-                        if (responseJsonObject.has("insert") && !responseJsonObject.isNull("insert")) {
-                            JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("insert");
-                            if (responseJsonObject2.getString("error").equals("false")) {
-                                Toast.makeText(SignUpActivity.this, "new account was created successfully", Toast.LENGTH_SHORT).show();
-                                goToLoginActivity();
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_customer_account.php";
+            RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+            StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        if (!response.isEmpty()) {
+                            responseJsonObject = new JSONObject(response);
+                            if (responseJsonObject.has("insert") && !responseJsonObject.isNull("insert")) {
+                                JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("insert");
+                                if (responseJsonObject2.getString("error").equals("false")) {
+                                    Toast.makeText(SignUpActivity.this, "new account was created successfully", Toast.LENGTH_SHORT).show();
+                                    goToLoginActivity();
+                                }
                             }
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
                 }
 
-            }
+            }, error -> Toast.makeText(SignUpActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show()) {
+                @Override
+                public String getBodyContentType() {
 
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Toast.makeText(SignUpActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                // as we are passing data in the form of url encoded
-                // so we are passing the content type below
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
 
-            @Override
-            protected Map<String, String> getParams() {
+                @Override
+                protected Map<String, String> getParams() {
 
-                // below line we are creating a map for storing
-                // our values in key and value pair.
-                Map<String, String> params = new HashMap<>();
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user_name", uname);
+                    params.put("pass_word", passwd);
+                    params.put("customer_name", display_name);
 
-                // on below line we are passing our
-                // key and value pair to our parameters.
-                params.put("user_name", uname);
-                params.put("pass_word", passwd);
-                params.put("customer_name", display_name);
+                    return params;
+                }
+            };
 
-                // at last we are returning our params.
-                return params;
-            }
-        };
-        // below line is to make
-        // a json object request.
-        queue.add(request);
+            queue.add(request);
+        });
+
     }
 
     private void goToLoginActivity() {

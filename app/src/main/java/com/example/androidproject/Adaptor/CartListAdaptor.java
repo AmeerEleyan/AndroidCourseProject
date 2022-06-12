@@ -2,6 +2,7 @@ package com.example.androidproject.Adaptor;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,12 @@ public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHo
     private final ArrayList<Meal> meals;
     private final ManagementCart managementCart;
 
+    private final Context context;
 
     public CartListAdaptor(ArrayList<Meal> meals, Context context) {
         this.meals = meals;
         this.managementCart = new ManagementCart(context);
+        this.context = context;
     }
 
     @NonNull
@@ -51,11 +54,12 @@ public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHo
         holder.plusItem.setOnClickListener(v -> {
             managementCart.plusNumberFood(meals.get(position).getId());
             notifyDataSetChanged();
-
+            refresh();
         });
         holder.minusItem.setOnClickListener(v -> {
             managementCart.minusNumberFood(meals.get(position).getId());
             notifyDataSetChanged();
+            refresh();
         });
     }
 
@@ -80,5 +84,9 @@ public class CartListAdaptor extends RecyclerView.Adapter<CartListAdaptor.ViewHo
             plusItem = itemView.findViewById(R.id.plusCardBtn);
             minusItem = itemView.findViewById(R.id.minusCartBtn);
         }
+    }
+
+    private void refresh() {
+        context.startActivity(new Intent(context, CartListActivity.class));
     }
 }

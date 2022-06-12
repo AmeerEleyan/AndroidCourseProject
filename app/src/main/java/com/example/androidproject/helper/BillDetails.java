@@ -42,8 +42,7 @@ public class BillDetails {
 
     @Override
     public String toString() {
-        return
-                "Mala name = " + mealName +",quantity = " +quantity;
+        return "Mala name: " + mealName + ",Quantity: " + quantity;
 
     }
 }

@@ -3,13 +3,14 @@ package com.example.androidproject.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidproject.Adaptor.CategoryAdaptor;
@@ -17,8 +18,10 @@ import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.CategoryDomain;
 import com.example.androidproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 
@@ -53,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loadCategories() {
-
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/get_categories.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/get_categories.php";
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    response -> {
                         try {
                             JSONArray array = new JSONArray(response);
                             for (int i = 0; i < array.length(); i++) {
@@ -79,16 +81,11 @@ public class MainActivity extends AppCompatActivity {
                         CategoryAdaptor adapter = new CategoryAdaptor(MainActivity.this, categoryDomainArrayList);
                         recyclerViewCategoryList.setAdapter(adapter);
 
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }, error -> Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show());
 
-            }
+            Volley.newRequestQueue(MainActivity.this).add(stringRequest);
         });
 
-        Volley.newRequestQueue(MainActivity.this).add(stringRequest);
     }
 
 }

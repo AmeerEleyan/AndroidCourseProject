@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,15 +15,11 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,13 +88,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String user_name, String pass_word) {
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/user_type.php";
-        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST,
-                url,
-                new com.android.volley.Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/user_type.php";
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            StringRequest request = new StringRequest(Request.Method.POST,
+                    url,
+                    response -> {
                         try {
                             if (!response.isEmpty()) {
                                 responseJsonObject = new JSONObject(response);
@@ -120,41 +117,26 @@ public class LoginActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                    }
+                    }, error -> Toast.makeText(LoginActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show()) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
 
-                }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Toast.makeText(LoginActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                // as we are passing data in the form of url encoded
-                // so we are passing the content type below
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
 
-            @Override
-            protected Map<String, String> getParams() {
+                    params.put("user_name", user_name);
+                    params.put("pass_word", pass_word);
 
-                // below line we are creating a map for storing
-                // our values in key and value pair.
-                Map<String, String> params = new HashMap<String, String>();
+                    return params;
+                }
+            };
 
-                // on below line we are passing our
-                // key and value pair to our parameters.
-                params.put("user_name", user_name);
-                params.put("pass_word", pass_word);
+            queue.add(request);
+        });
 
-                // at last we are returning our params.
-                return params;
-            }
-        };
-        // below line is to make
-        // a json object request.
-        queue.add(request);
     }
 
     private void goToMainActivity() {
@@ -168,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToChefActivity() {
-        //Intent intent = new Intent(this, ChefActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ActivityChef.class);
+        startActivity(intent);
     }
 
     public void handleSignUp(View view) {

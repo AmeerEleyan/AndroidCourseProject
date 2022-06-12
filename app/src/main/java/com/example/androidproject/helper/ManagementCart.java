@@ -47,7 +47,7 @@ public class ManagementCart {
 
 
     public boolean isCartEmpty() {
-        return listFood.isEmpty();
+        return listFood.size() == 0;
     }
 
 

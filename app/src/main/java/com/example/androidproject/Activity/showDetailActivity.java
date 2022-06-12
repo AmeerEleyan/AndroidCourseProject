@@ -2,9 +2,7 @@ package com.example.androidproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,9 +41,10 @@ public class showDetailActivity extends AppCompatActivity {
         Glide.with(this).load(image_path).into(picFood);
 
         titleTxt.setText(meal.getTitle());
-        feeTxt.setText("" + meal.getSellingPrice());
+
+        feeTxt.setText(String.valueOf(meal.getSellingPrice()));
         descriptionTxt.setText(meal.getDescription());
-        numberOrderTxt.setText(numberOrder+"");
+        numberOrderTxt.setText(String.valueOf(numberOrder));
 
         plusBtn.setOnClickListener(view -> {
             numberOrder++;

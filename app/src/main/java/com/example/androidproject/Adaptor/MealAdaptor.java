@@ -2,7 +2,6 @@ package com.example.androidproject.Adaptor;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.androidproject.Activity.CategoryMealsActivity;
 import com.example.androidproject.Activity.showDetailActivity;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.Meal;
@@ -25,7 +23,7 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
 
 
     private final ArrayList<Meal> meals;
-    private Context context;
+    private final Context context;
 
     public MealAdaptor(Context context, ArrayList<Meal> categories) {
         this.context = context;

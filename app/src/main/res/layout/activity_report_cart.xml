@@ -43,12 +43,8 @@
             android:id="@+id/profitTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:layout_marginRight="8dp"
             android:text="profit"
-=======
-            android:text="Price"
->>>>>>> ef9e6dfc5703c06381f1f1aef5496b4d9f97620d
             android:textColor="#373b54"
             android:textSize="18sp"
             android:textStyle="bold" />

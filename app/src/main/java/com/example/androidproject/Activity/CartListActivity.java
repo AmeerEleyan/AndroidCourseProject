@@ -31,15 +31,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CartListActivity extends AppCompatActivity {
+
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt, buy, discounts;
     private ScrollView scrollView;
     private ManagementCart managementCart;
     private String billID;
-    private boolean isGolden;
+    private boolean isGoldenCustomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class CartListActivity extends AppCompatActivity {
         initView();
         initList();
         isCustomerGolden(String.valueOf(UserSession.USER_ID_IN_SESSION));
-        CalculateCart();
         bottomNavigation();
         handleBuyButton();
     }
@@ -73,7 +72,7 @@ public class CartListActivity extends AppCompatActivity {
         totalFeeTxt = findViewById(R.id.totalFeelTxt);
         deliveryTxt = findViewById(R.id.deliveryServiceTxt);
         totalTxt = findViewById(R.id.totalTxtProfit);
-        emptyTxt = findViewById(R.id.emptyText);
+        emptyTxt = findViewById(R.id.empty_cart_text);
         scrollView = findViewById(R.id.scrollView3);
         buy = findViewById(R.id.buy_btn);
         discounts = findViewById(R.id.discountTxt);
@@ -84,10 +83,8 @@ public class CartListActivity extends AppCompatActivity {
         buy.setOnClickListener(v -> {
             AlertDialog.Builder alt = new AlertDialog.Builder(CartListActivity.this);
             alt.setMessage("Are you sure to buy the cart?").setCancelable(false)
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                                buyCart(String.valueOf(UserSession.USER_ID_IN_SESSION), totalTxt.getText().toString());
-                            }
-                    )
+                    .setPositiveButton("Yes", (dialog, which) -> buyCart(String.valueOf(UserSession.USER_ID_IN_SESSION),
+                            totalTxt.getText().toString()))
                     .setNegativeButton("No", (dialog, which) -> dialog.cancel());
 
             AlertDialog alertDialog = alt.create();
@@ -97,42 +94,44 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     private void isCustomerGolden(String userID) {
-        AtomicBoolean isGolden = new AtomicBoolean(false);
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/is_customer_golden.php";
-        RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
-            try {
-                if (!response.isEmpty()) {
-                    JSONObject responseJsonObject = new JSONObject(response);
-                    if (responseJsonObject.has("golden_customer") && !responseJsonObject.isNull("golden_customer")) {
-                        JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("golden_customer");
-                        if (responseJsonObject2.getString("isGolden").equals("0")) {
-                            boolean temp = true;
-                            isGolden.set(temp);
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/is_customer_golden.php";
+            RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
+            StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
+                try {
+                    if (!response.isEmpty()) {
+                        JSONObject responseJsonObject = new JSONObject(response);
+                        if (responseJsonObject.has("golden_customer") && !responseJsonObject.isNull("golden_customer")) {
+                            JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("golden_customer");
+                            if (responseJsonObject2.getString("isGolden").equals("1")) {
+                                isGoldenCustomer = true;
+                            }
+                            CalculateCart();
                         }
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> {
-            Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-        }) {
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+            }, error -> {
+                Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
 
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("user_id", userID);
-                return params;
-            }
-        };
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user_id", userID);
+                    return params;
+                }
+            };
 
-        queue.add(request);
-        this.isGolden = isGolden.get();
+            queue.add(request);
+        });
+
     }
 
 
@@ -159,9 +158,7 @@ public class CartListActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            }, error -> {
-                Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }) {
+            }, error -> Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show()) {
                 @Override
                 public String getBodyContentType() {
                     return "application/x-www-form-urlencoded; charset=UTF-8";
@@ -192,46 +189,49 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     private void sendBillDetailsToDB(String billID, Meal meal) {
-
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_bill_details.php";
-        RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST,
-                url,
-                response -> {
-                    try {
-                        if (!response.isEmpty()) {
-                            JSONObject responseJsonObject = new JSONObject(response);
-                            if (responseJsonObject.has("bill_details") && !responseJsonObject.isNull("bill_details")) {
-                                JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("bill_details");
-                                if (responseJsonObject2.getString("error").equals("true")) {
-                                    Toast.makeText(CartListActivity.this, "Error in add bill details", Toast.LENGTH_SHORT).show();
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_bill_details.php";
+            RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
+            StringRequest request = new StringRequest(Request.Method.POST,
+                    url,
+                    response -> {
+                        try {
+                            if (!response.isEmpty()) {
+                                JSONObject responseJsonObject = new JSONObject(response);
+                                if (responseJsonObject.has("bill_details") && !responseJsonObject.isNull("bill_details")) {
+                                    JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("bill_details");
+                                    if (responseJsonObject2.getString("error").equals("true")) {
+                                        Toast.makeText(CartListActivity.this, "Error in add bill details", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
-                }, error -> {
-            // method to handle errors.
-            Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-        }) {
-            @Override
-            public String getBodyContentType() {
+                    }, error -> {
+                // method to handle errors.
+                Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+            }) {
+                @Override
+                public String getBodyContentType() {
 
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
 
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("b_id", billID);
-                params.put("m_id", String.valueOf(meal.getId()));
-                params.put("quantity", String.valueOf(meal.getNumberInCart()));
-                return params;
-            }
-        };
-        queue.add(request);
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("b_id", billID);
+                    params.put("m_id", String.valueOf(meal.getId()));
+                    params.put("quantity", String.valueOf(meal.getNumberInCart()));
+                    return params;
+                }
+            };
+            queue.add(request);
+        });
+
     }
 
     private void initList() {
@@ -243,7 +243,6 @@ public class CartListActivity extends AppCompatActivity {
             emptyTxt.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.INVISIBLE);
         } else {
-            emptyTxt.setVisibility(View.INVISIBLE);
             scrollView.setVisibility(View.VISIBLE);
         }
     }
@@ -256,16 +255,17 @@ public class CartListActivity extends AppCompatActivity {
         double itemTotal = Math.round(managementCart.getTotalFee() * 100) / 100.0;
         double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100) / 100.0;
 
-        totalFeeTxt.setText("" + itemTotal);
-        taxTxt.setText("" + tax);
-        deliveryTxt.setText("" + delivery);
-        if (isGolden) {
+        totalFeeTxt.setText(String.valueOf(itemTotal));
+        taxTxt.setText(String.valueOf(tax));
+        deliveryTxt.setText(String.valueOf(delivery));
+
+        if (isGoldenCustomer) {
             total -= (total * 0.05d);
             discounts.setText("5%");
         } else {
             discounts.setText("0.0%");
         }
-        totalTxt.setText("" + total);
+        totalTxt.setText(String.valueOf(total));
     }
 
     private void goToMainActivity() {

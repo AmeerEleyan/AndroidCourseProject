@@ -3,15 +3,11 @@ package com.example.androidproject.helper;
 import java.util.ArrayList;
 
 public class Bill {
-   private String billId;
-   private ArrayList<BillDetails> billDetailsList;
+    private String billId;
+    private ArrayList<BillDetails> billDetailsList;
 
     public Bill() {
-    }
-
-    public Bill(String billId, ArrayList<BillDetails> billDetailsList) {
-        this.billId = billId;
-        this.billDetailsList = billDetailsList;
+        this.billDetailsList = new ArrayList<>();
     }
 
     public String getBillId() {

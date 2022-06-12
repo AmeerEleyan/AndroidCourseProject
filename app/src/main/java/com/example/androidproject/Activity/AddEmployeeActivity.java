@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -28,7 +29,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
 
     private EditText userName, pass, confirmPass, employeeName, employeeSalary;
-    private String employeeType="";
+    private String employeeType = "";
     private RadioButton radioButton;
     private RadioGroup radioGroup;
     private JSONObject responseJsonObject;
@@ -72,22 +73,21 @@ public class AddEmployeeActivity extends AppCompatActivity {
             Toast.makeText(this, "Not match password", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(this.radioButton.getText().toString().trim().equals("Chef"))
-            this.employeeType="3";
+        if (this.radioButton.getText().toString().trim().equals("Chef"))
+            this.employeeType = "3";
         else
-            this.employeeType="4";
+            this.employeeType = "4";
 
         this.handleAddEmployeeEmployeePage(this.userName.getText().toString().trim(), this.pass.getText().toString().trim(), this.employeeName.getText().toString().trim(), this.employeeSalary.getText().toString().trim(), this.employeeType);
 
     }
 
     private void handleAddEmployeeEmployeePage(String userName, String pass, String employeeName, String employeeSalary, String employeeType) {
-
-        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_employee_account.php";
-        RequestQueue queue = Volley.newRequestQueue(AddEmployeeActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        final Handler handler = new Handler();
+        handler.post(() -> {
+            String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/new_employee_account.php";
+            RequestQueue queue = Volley.newRequestQueue(AddEmployeeActivity.this);
+            StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
                 try {
                     if (!response.isEmpty()) {
                         responseJsonObject = new JSONObject(response);
@@ -103,44 +103,34 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            }
-
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+            }, error -> {
                 // method to handle errors.
                 Toast.makeText(AddEmployeeActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                // as we are passing data in the form of url encoded
-                // so we are passing the content type below
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+            }) {
+                @Override
+                public String getBodyContentType() {
 
-            @Override
-            protected Map<String, String> getParams() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
 
-                // below line we are creating a map for storing
-                // our values in key and value pair.
-                Map<String, String> params = new HashMap<>();
+                @Override
+                protected Map<String, String> getParams() {
 
-                // on below line we are passing our
-                // key and value pair to our parameters.
-                params.put("user_name", userName);
-                params.put("pass_word", pass);
-                params.put("employee_name", employeeName);
-                params.put("employee_salary", employeeSalary);
-                params.put("employee_type",employeeType);
+                    Map<String, String> params = new HashMap<>();
 
-                // at last we are returning our params.
-                return params;
-            }
-        };
-        // below line is to make
-        // a json object request.
-        queue.add(request);
+                    params.put("user_name", userName);
+                    params.put("pass_word", pass);
+                    params.put("employee_name", employeeName);
+                    params.put("employee_salary", employeeSalary);
+                    params.put("employee_type", employeeType);
+
+                    return params;
+                }
+            };
+
+            queue.add(request);
+        });
+
     }
 
 

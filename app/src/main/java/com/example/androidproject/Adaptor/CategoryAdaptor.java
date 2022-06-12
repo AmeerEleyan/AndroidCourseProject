@@ -2,9 +2,7 @@ package com.example.androidproject.Adaptor;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.androidproject.Activity.CategoryMealsActivity;
-import com.example.androidproject.Activity.LoginActivity;
 import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.Domain.CategoryDomain;
 import com.example.androidproject.R;
@@ -25,8 +22,8 @@ import java.util.ArrayList;
 public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder> {
 
 
-    private ArrayList<CategoryDomain> categories;
-    private Context context;
+    private final ArrayList<CategoryDomain> categories;
+    private final Context context;
 
     public CategoryAdaptor(Context context, ArrayList<CategoryDomain> categories) {
         this.context = context;
@@ -45,23 +42,16 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
     public void onBindViewHolder(@NonNull CategoryAdaptor.ViewHolder holder, int position) {
         final CategoryDomain categoryDomain = categories.get(position);
         CardView cardView = holder.cardView;
-        ImageView imageView = (ImageView) cardView.findViewById(R.id.category_image);
+        ImageView imageView = cardView.findViewById(R.id.category_image);
         String image_path = "http://" + UserSession.IP_ADDRESS + categoryDomain.getCategory_image_path();
         Glide.with(context).load(image_path).into(imageView);
-        TextView txt = (TextView) cardView.findViewById(R.id.txtName);
+        TextView txt = cardView.findViewById(R.id.txtName);
         txt.setText(categoryDomain.getTitle());
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CategoryMealsActivity.class);
-                intent.putExtra("CATEGORY_ID", ""+categoryDomain.getId());
-                context.startActivity(intent);
-            }
+        cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CategoryMealsActivity.class);
+            intent.putExtra("CATEGORY_ID", "" + categoryDomain.getId());
+            context.startActivity(intent);
         });
-
-    }
-
-    private void openCategoryActivity() {
 
     }
 

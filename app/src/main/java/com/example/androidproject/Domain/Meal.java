@@ -10,23 +10,12 @@ public class Meal implements Serializable {
     private Double sellingPrice;
     private int numberInCart;
 
-    public Meal(){
-
-    }
     public Meal(int id, String title, String pic, String description, Double sellingPrice) {
         this.id = id;
         this.title = title;
         this.pic = pic;
         this.description = description;
         this.sellingPrice = sellingPrice;
-    }
-
-    public Meal(String title, String pic, String description, Double sellingPrice, int numberInCart) {
-        this.title = title;
-        this.pic = pic;
-        this.description = description;
-        this.sellingPrice = sellingPrice;
-        this.numberInCart = numberInCart;
     }
 
     public String getTitle() {
