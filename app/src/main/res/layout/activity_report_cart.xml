@@ -45,10 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:text="profit"
-<<<<<<< HEAD
-=======
-            android:text="Price"
->>>>>>> d7a6b690e52890c85f6dfa6e3de2225906f5cd65
             android:textColor="#373b54"
             android:textSize="18sp"
             android:textStyle="bold" />
