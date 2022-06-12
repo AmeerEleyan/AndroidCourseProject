@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 // @Author :Abdallah
 // 12-6-2022
-public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder>{
+public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder> {
 
 
     private final ArrayList<BillDetails> billDetailsList;
@@ -30,7 +30,7 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cart, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_report_cart, parent, false);
         return new ViewHolder(inflate);
 
     }
@@ -43,7 +43,7 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
         holder.counter.setText(billDetail.getQuantity());
 
         // Cast Price(Double) To String and put it in the text
-        holder.profit.setText( billDetail.getPrice()+"");
+        holder.profit.setText(billDetail.getPrice() + "");
 
     }
 
@@ -54,12 +54,13 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView title , counter , profit;
+        TextView title, counter, profit;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.titleTxt);
-            counter=itemView.findViewById(R.id.numberItemTxt);
-            profit=itemView.findViewById(R.id.profitTxt);
+            counter = itemView.findViewById(R.id.numberItemTxt);
+            profit = itemView.findViewById(R.id.profitTxt);
 
         }
     }
