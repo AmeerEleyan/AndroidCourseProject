@@ -60,15 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void recyclerViewCategoryList() {
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        recyclerViewCategoryList = findViewById(R.id.rv_category_items);
-//        recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
-//
-//        adapter = new CategoryAdaptor(categories);
-//        recyclerViewCategoryList.setAdapter(adapter);
-//
-//    }
 
     private void loadCategories() {
 
