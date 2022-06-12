@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidproject.DatabaseUtility.UserSession;
 import com.example.androidproject.R;
 import com.example.androidproject.helper.BillDetails;
 
@@ -26,24 +25,22 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
         this.billDetailsList = billDetailsList;
     }
 
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ReportAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_report_cart, parent, false);
         return new ViewHolder(inflate);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReportAdaptor.ViewHolder holder, int position) {
         BillDetails billDetail = billDetailsList.get(position);
 
         holder.title.setText(billDetail.getMalaName());
-        holder.counter.setText(billDetail.getQuantity());
+        holder.counter.setText(String.valueOf(billDetail.getQuantity()));
 
-        // Cast Price(Double) To String and put it in the text
-        holder.profit.setText(billDetail.getPrice() + "");
+        holder.profit.setText(String.valueOf(billDetail.getPrice()));
 
     }
 
