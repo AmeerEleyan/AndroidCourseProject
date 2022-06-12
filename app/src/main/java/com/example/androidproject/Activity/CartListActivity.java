@@ -39,6 +39,7 @@ public class CartListActivity extends AppCompatActivity {
     private ScrollView scrollView;
     private ManagementCart managementCart;
     private String billID;
+    private boolean isGolden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class CartListActivity extends AppCompatActivity {
         taxTxt = findViewById(R.id.taxTxt);
         totalFeeTxt = findViewById(R.id.totalFeelTxt);
         deliveryTxt = findViewById(R.id.deliveryServiceTxt);
-        totalTxt = findViewById(R.id.totalTxt);
+        totalTxt = findViewById(R.id.totalTxtProfit);
         emptyTxt = findViewById(R.id.emptyText);
         scrollView = findViewById(R.id.scrollView3);
         buy = findViewById(R.id.buy_btn);
@@ -96,7 +97,7 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     private void isCustomerGolden(String userID) {
-
+        AtomicBoolean isGolden = new AtomicBoolean(false);
         String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/is_customer_golden.php";
         RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
@@ -106,7 +107,8 @@ public class CartListActivity extends AppCompatActivity {
                     if (responseJsonObject.has("golden_customer") && !responseJsonObject.isNull("golden_customer")) {
                         JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("golden_customer");
                         if (responseJsonObject2.getString("isGolden").equals("0")) {
-                            UserSession.IS_GOLDEN_CUSTOMER = true;
+                            boolean temp = true;
+                            isGolden.set(temp);
                         }
                     }
                 }
@@ -130,7 +132,7 @@ public class CartListActivity extends AppCompatActivity {
         };
 
         queue.add(request);
-
+        this.isGolden = isGolden.get();
     }
 
 
@@ -239,9 +241,9 @@ public class CartListActivity extends AppCompatActivity {
         recyclerViewList.setAdapter(adaptor);
         if (managementCart.isCartEmpty()) {
             emptyTxt.setVisibility(View.VISIBLE);
-            scrollView.setVisibility(View.GONE);
+            scrollView.setVisibility(View.INVISIBLE);
         } else {
-            emptyTxt.setVisibility(View.GONE);
+            emptyTxt.setVisibility(View.INVISIBLE);
             scrollView.setVisibility(View.VISIBLE);
         }
     }
@@ -257,7 +259,7 @@ public class CartListActivity extends AppCompatActivity {
         totalFeeTxt.setText("" + itemTotal);
         taxTxt.setText("" + tax);
         deliveryTxt.setText("" + delivery);
-        if (UserSession.IS_GOLDEN_CUSTOMER) {
+        if (isGolden) {
             total -= (total * 0.05d);
             discounts.setText("5%");
         } else {

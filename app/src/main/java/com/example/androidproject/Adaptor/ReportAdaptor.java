@@ -36,7 +36,6 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ReportAdaptor.ViewHolder holder, int position) {
         BillDetails billDetail = billDetailsList.get(position);
-
         holder.title.setText(billDetail.getMalaName());
         holder.counter.setText(String.valueOf(billDetail.getQuantity()));
 

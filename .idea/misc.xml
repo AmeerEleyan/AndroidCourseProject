@@ -32,13 +32,14 @@
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/drawable/cart_background.xml" value="0.159" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/drawable/ic_chat.xml" value="0.223" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/drawable/ic_setting.xml" value="0.1525" />
+        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/drawable/linear_layout.xml" value="0.1525" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/drawable/logout.xml" value="0.1525" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_add_employee.xml" value="0.264" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_cart_list.xml" value="0.2526041666666667" />
+        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_cart_list.xml" value="0.4" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_category_items.xml" value="0.161231884057971" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_category_meals.xml" value="0.2526041666666667" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_forget_password.xml" value="0.2526041666666667" />
-        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_generate_report.xml" value="0.2" />
+        <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_generate_report.xml" value="0.2526041666666667" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_login.xml" value="0.20208333333333334" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/MyData/3ed-Year/SecondSemester2022/Mobile Application/AndroidCourseProject/app/src/main/res/layout/activity_manger.xml" value="0.264" />

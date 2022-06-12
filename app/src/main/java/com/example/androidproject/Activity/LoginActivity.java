@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private CheckBox rememberMeCB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +59,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkPrefs() {
-        boolean flag = sharedPreferences.getBoolean("FLAG",false);
-        if(flag){
-            String name  = sharedPreferences.getString("NAME","");
-            String password = sharedPreferences.getString("PASSWORD","");
+        boolean flag = sharedPreferences.getBoolean("FLAG", false);
+        if (flag) {
+            String name = sharedPreferences.getString("NAME", "");
+            String password = sharedPreferences.getString("PASSWORD", "");
             this.uname.setText(name);
             this.passwd.setText(password);
             this.rememberMeCB.setChecked(true);
@@ -78,11 +79,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         String name = this.uname.getText().toString();
-        String pass = this.passwd.getText().toString() ;
-        if( rememberMeCB.isChecked() ){
-            this.editor.putString("NAME",name.trim());
-            this.editor.putString("PASSWORD",pass.trim());
-            this.editor.putBoolean("FLAG",true);
+        String pass = this.passwd.getText().toString();
+        if (rememberMeCB.isChecked()) {
+            this.editor.putString("NAME", name.trim());
+            this.editor.putString("PASSWORD", pass.trim());
+            this.editor.putBoolean("FLAG", true);
             this.editor.commit();
         }
         this.login(name.trim(), pass.trim());
@@ -95,33 +96,33 @@ public class LoginActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST,
                 url,
                 new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    if (!response.isEmpty()) {
-                        responseJsonObject = new JSONObject(response);
-                        if (responseJsonObject.has("user") && !responseJsonObject.isNull("user")) {
-                            JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("user");
-                            UserSession.USER_ID_IN_SESSION = Integer.parseInt(responseJsonObject2.getString("id"));
-                            UserSession.USER_TYPE = Integer.parseInt(responseJsonObject2.getString("login_type"));
-                            if (UserSession.USER_TYPE == 1) {
-                                goToMainActivity();
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if (!response.isEmpty()) {
+                                responseJsonObject = new JSONObject(response);
+                                if (responseJsonObject.has("user") && !responseJsonObject.isNull("user")) {
+                                    JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("user");
+                                    UserSession.USER_ID_IN_SESSION = Integer.parseInt(responseJsonObject2.getString("id"));
+                                    UserSession.USER_TYPE = Integer.parseInt(responseJsonObject2.getString("login_type"));
+                                    if (UserSession.USER_TYPE == 1) {
+                                        goToMainActivity();
+                                    } else if (UserSession.USER_TYPE == 2) {
+                                        goToMangerActivity();
+                                    } else if (UserSession.USER_TYPE == 3) {
+                                        goToChefActivity();
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                             }
-                            else if(UserSession.USER_TYPE==2)
-                            {
-                                goToMangerActivity();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-            }
-
-        }, new com.android.volley.Response.ErrorListener() {
+                }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
@@ -160,9 +161,15 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
     private void goToMangerActivity() {
         Intent intent = new Intent(this, MangerActivity.class);
         startActivity(intent);
+    }
+
+    private void goToChefActivity() {
+        //Intent intent = new Intent(this, ChefActivity.class);
+        //startActivity(intent);
     }
 
     public void handleSignUp(View view) {
