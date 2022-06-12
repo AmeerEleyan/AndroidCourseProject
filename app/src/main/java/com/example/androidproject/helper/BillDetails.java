@@ -1,22 +1,27 @@
 package com.example.androidproject.helper;
 
 public class BillDetails {
-    private String malaName;
+    private String mealName;
     private double price;
     private int quantity;
 
-    public BillDetails(String malaName, double price, int quantity) {
-        this.malaName = malaName;
+    public BillDetails(String mealName, double price, int quantity) {
+        this.mealName = mealName;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public String getMalaName() {
-        return malaName;
+    public BillDetails(String mealName, int quantity) {
+        this.mealName = mealName;
+        this.quantity = quantity;
     }
 
-    public void setMalaName(String malaName) {
-        this.malaName = malaName;
+    public String getMealName() {
+        return mealName;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
     }
 
     public double getPrice() {
@@ -37,10 +42,8 @@ public class BillDetails {
 
     @Override
     public String toString() {
-        return "BillDetails{" +
-                "malaName='" + malaName + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+        return
+                "Mala name = " + mealName +",quantity = " +quantity;
+
     }
 }

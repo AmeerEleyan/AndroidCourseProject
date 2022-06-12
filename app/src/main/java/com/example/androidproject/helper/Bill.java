@@ -1,38 +1,40 @@
 package com.example.androidproject.helper;
 
+import java.util.ArrayList;
+
 public class Bill {
-    private int customerId;
-    private int billValue;
+   private String billId;
+   private ArrayList<BillDetails> billDetailsList;
 
     public Bill() {
     }
 
-    public Bill(int customerId, int billValue) {
-        this.customerId = customerId;
-        this.billValue = billValue;
+    public Bill(String billId, ArrayList<BillDetails> billDetailsList) {
+        this.billId = billId;
+        this.billDetailsList = billDetailsList;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getBillId() {
+        return billId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setBillId(String billId) {
+        this.billId = billId;
     }
 
-    public int getBillValue() {
-        return billValue;
+    public ArrayList<BillDetails> getBillDetailsList() {
+        return billDetailsList;
     }
 
-    public void setBillValue(int billValue) {
-        this.billValue = billValue;
+    public void setBillDetailsList(ArrayList<BillDetails> billDetailsList) {
+        this.billDetailsList = billDetailsList;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", billValue=" + billValue +
+        return "Bill{" +
+                "billId='" + billId + '\'' +
+                ", billDetailsList=" + billDetailsList +
                 '}';
     }
 }

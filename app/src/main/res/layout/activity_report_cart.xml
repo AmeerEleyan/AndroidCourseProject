@@ -41,7 +41,7 @@
             android:id="@+id/profitTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="profit"
+            android:text="Price"
             android:textColor="#373b54"
             android:textSize="18sp"
             android:textStyle="bold" />
