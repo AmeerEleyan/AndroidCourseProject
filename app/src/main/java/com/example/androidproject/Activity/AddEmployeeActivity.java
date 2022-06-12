@@ -31,7 +31,6 @@ public class AddEmployeeActivity extends AppCompatActivity {
     private String employeeType="";
     private RadioButton radioButton;
     private RadioGroup radioGroup;
-    private RequestQueue queue;
     private JSONObject responseJsonObject;
 
     @Override
@@ -44,7 +43,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         this.confirmPass = findViewById(R.id.EmployeeConfirmPasswordEditText);
         this.employeeName = findViewById(R.id.EmployeeNameEditText);
         this.employeeSalary = findViewById(R.id.EmployeeSalaryEditText);
-        this.queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(this);
     }
 
     public void handleAddEmployeeEmployeePage(View view) {
@@ -74,9 +73,9 @@ public class AddEmployeeActivity extends AppCompatActivity {
             return;
         }
         if(this.radioButton.getText().toString().trim().equals("Chef"))
-            this.employeeType="2";
-        else
             this.employeeType="3";
+        else
+            this.employeeType="4";
 
         this.handleAddEmployeeEmployeePage(this.userName.getText().toString().trim(), this.pass.getText().toString().trim(), this.employeeName.getText().toString().trim(), this.employeeSalary.getText().toString().trim(), this.employeeType);
 
@@ -149,7 +148,6 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
         int radioID = radioGroup.getCheckedRadioButtonId();
         this.radioButton = findViewById(radioID);
-
     }
 
     private void goToMangerActivity() {

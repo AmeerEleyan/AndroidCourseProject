@@ -107,6 +107,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (UserSession.USER_TYPE == 1) {
                                 goToMainActivity();
                             }
+                            else if(UserSession.USER_TYPE==2)
+                            {
+                                goToMangerActivity();
+                            }
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
@@ -154,6 +158,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    private void goToMangerActivity() {
+        Intent intent = new Intent(this, MangerActivity.class);
         startActivity(intent);
     }
 

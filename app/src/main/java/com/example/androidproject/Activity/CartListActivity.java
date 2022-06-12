@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -32,13 +31,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CartListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt, buy, discounts;
     private ScrollView scrollView;
     private ManagementCart managementCart;
-    private String billID, customerDiscount;
+    private String billID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class CartListActivity extends AppCompatActivity {
         this.managementCart = new ManagementCart(this);
         initView();
         initList();
+        isCustomerGolden(String.valueOf(UserSession.USER_ID_IN_SESSION));
         CalculateCart();
         bottomNavigation();
         handleBuyButton();
@@ -93,6 +94,45 @@ public class CartListActivity extends AppCompatActivity {
             alertDialog.show();
         });
     }
+
+    private void isCustomerGolden(String userID) {
+
+        String url = "http://" + UserSession.IP_ADDRESS + "/MobileProject/is_customer_golden.php";
+        RequestQueue queue = Volley.newRequestQueue(CartListActivity.this);
+        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
+            try {
+                if (!response.isEmpty()) {
+                    JSONObject responseJsonObject = new JSONObject(response);
+                    if (responseJsonObject.has("golden_customer") && !responseJsonObject.isNull("golden_customer")) {
+                        JSONObject responseJsonObject2 = responseJsonObject.getJSONObject("golden_customer");
+                        if (responseJsonObject2.getString("isGolden").equals("0")) {
+                            UserSession.IS_GOLDEN_CUSTOMER = true;
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> {
+            Toast.makeText(CartListActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userID);
+                return params;
+            }
+        };
+
+        queue.add(request);
+
+    }
+
 
     private void buyCart(String userID, String valueOfBill) {
         final Handler handler = new Handler();
@@ -211,14 +251,19 @@ public class CartListActivity extends AppCompatActivity {
         double delivery = 10;
 
         double tax = Math.round((managementCart.getTotalFee() * percentTax) * 100) / 100.0;
-        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100) / 100.0;
         double itemTotal = Math.round(managementCart.getTotalFee() * 100) / 100.0;
+        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100) / 100.0;
 
         totalFeeTxt.setText("" + itemTotal);
         taxTxt.setText("" + tax);
         deliveryTxt.setText("" + delivery);
+        if (UserSession.IS_GOLDEN_CUSTOMER) {
+            total -= (total * 0.05d);
+            discounts.setText("5%");
+        } else {
+            discounts.setText("0.0%");
+        }
         totalTxt.setText("" + total);
-        discounts.setText(customerDiscount + "");
     }
 
     private void goToMainActivity() {

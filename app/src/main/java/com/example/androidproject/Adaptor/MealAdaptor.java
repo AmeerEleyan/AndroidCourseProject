@@ -50,7 +50,6 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
         String image_path = "http://" + UserSession.IP_ADDRESS + meal.getPic();
         Glide.with(holder.itemView.getContext()).load(image_path).into(holder.pic);
 
-        int myLastPosition = holder.getAdapterPosition();
         holder.addBtn.setOnClickListener(view -> {
             Intent intent = new Intent(context, showDetailActivity.class);
             intent.putExtra("ID", meal.getId()+"");
@@ -60,13 +59,6 @@ public class MealAdaptor extends RecyclerView.Adapter<MealAdaptor.ViewHolder> {
             intent.putExtra("IMAGE", meal.getPic()+"");
             context.startActivity(intent);
         });
-     /*   holder.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
-            }
-        });*/
 
     }
 
