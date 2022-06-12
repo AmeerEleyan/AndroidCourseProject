@@ -45,11 +45,6 @@ public class ReportAdaptor extends RecyclerView.Adapter<ReportAdaptor.ViewHolder
         // Cast Price(Double) To String and put it in the text
         holder.profit.setText( billDetail.getPrice()+"");
 
-
-
-
-
-
     }
 
     @Override
