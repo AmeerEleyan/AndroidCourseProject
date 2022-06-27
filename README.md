@@ -20,6 +20,12 @@
 
 ✅ Learn how to make local storage using shared preferences.
 
+✅ Learn how to use Google's Volley Library .
+
+✅  Learn how to Build a Simple REST API in PHP
+
+✅  Learn how to Test API Using Postman
+
 ----------------------------------------------------------
 م
 
