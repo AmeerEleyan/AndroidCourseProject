@@ -1,7 +1,7 @@
 # COMP438, Mobile Application Development
-## Star ⭐ the repo if you like what you see😎.
+#### Star ⭐ the repo if you like what you see😎.
  
-# 🍔🍔 Restaurant app (Amz3 W Efz3)
+## 🍔🍔 Restaurant app (Amz3 W Efz3)
 
 -------------------------------------------------------
 
